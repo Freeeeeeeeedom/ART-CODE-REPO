@@ -35,7 +35,7 @@ public class TestEffectiveness {
 
     public static void main(String args[]) throws IOException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         Class<? extends AbstractART> algorithm=FSCS_art.class;
-        String basePath = "E:\\";
+        String basePath = "..\\..\\effectiveness\\";
         File filedir=new File(basePath+algorithm.getName());
         if(!filedir.exists()){
             filedir.mkdirs();

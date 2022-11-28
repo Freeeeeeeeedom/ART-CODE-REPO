@@ -83,6 +83,7 @@ public class FSCS_art extends AbstractART {
         for (int i = 1; i <= times; i++) {
             FaultZone fz=new FaultZone_Point_Square(bd, failrate);
             FSCS_art fscs_block= new FSCS_art(bd, p);
+
             temp=fscs_block.run(fz);
             result.add(temp);
             System.out.println("第" + i + "次试验F_Measure：" + temp);
