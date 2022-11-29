@@ -1,4 +1,4 @@
-package pbs;
+package SBS;
 
 import faultZone.FaultZone;
 import faultZone.FaultZone_Point_Square;
@@ -10,71 +10,67 @@ import model.Testcase;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
-public class PBS_art extends AbstractART {
+public class SBS_art extends AbstractART {
     public DomainBoundary inputBoundary = new DomainBoundary();
     int count = 1;
 
-    public List<Testcase> left = new ArrayList<>();
-    public List<Testcase> right = new ArrayList<>();
+    public List<List<Testcase>>  PT = new ArrayList<>();
+    int PT_size = 5;
 
+    int partitions = 10;
     Double p;
 
-    public PBS_art(DomainBoundary inputBoundary, Double p) {
+    public SBS_art(DomainBoundary inputBoundary, Double p) {
         this.inputBoundary = inputBoundary;
         this.p=p;
     }
 
-    public PBS_art(){
+    public SBS_art(){
 
     }
 
-    public void Partitioning(){
-        //这里使用二分的分区方法
-        left.clear();
-        right.clear();
+    public void PT_generate(){
+        for(int i=0;i<PT_size;i++)PT.add(new ArrayList<Testcase>());
+        for(int i=0;i<PT_size;i++) PT.get(i).add(Candidate.get(i));
+        for(int i=PT_size;i<Candidate.size();i++){
+            PT.get(new Random().nextInt(PT_size)).add(Candidate.get(i));
+        }
+    }
 
-        int flag = new Random().nextInt(Candidate.size());
+    public double Fitness(List<Testcase> T){
+        double Mindist = Double.MAX_VALUE;
 
-        for(int i=0;i<flag;i++) left.add(Candidate.get(i));
-        for(int i=flag;i<Candidate.size();i++) right.add(Candidate.get(i));
+        if(T.size()==1) return Double.MAX_VALUE;
+        for(int i=0;i<T.size();i++){
+               for(int j=i+1;j<T.size();j++){
+                   double distance = Testcase.Distance(T.get(i),T.get(j),p);
+                   if(distance < Mindist) Mindist = distance;
+               }
+        }
+        return Mindist;
     }
     @Override
     public Testcase Best_candidate() {
         this.Candidate.clear();
-        this.Candidate=Testcase.generateCandates(10,inputBoundary.getList());
+        this.Candidate=Testcase.generateCandates(20,inputBoundary.getList());
 
-        Partitioning();
+        PT_generate();
 
-        Testcase p = null;
-        double mindist, maxmin = 0;
-        int cixu = -1;
-        if(total.size()==0){
-            return Candidate.get(new Random().nextInt(Candidate.size()));
-        }
-        if(left.size()>right.size()){
-            int index = new Random().nextInt(left.size());
-            cixu = index;
-        }
-        else{
-            int index = new Random().nextInt(right.size()) + left.size();
-            cixu = index;
-        }
-//        for (int i = 0; i < this.Candidate.size(); i++) {
-//            mindist = Double.MAX_VALUE;
-//            for (int j = 0; j < this.total.size(); j++) {
-//                double dist = Testcase.Distance(this.Candidate.get(i), this.total.get(j), this.p);
-//                if (dist < mindist) {
-//                    mindist = dist;
-//                }
-//            }
-//            if (maxmin < mindist) {
-//                maxmin = mindist;
-//                cixu = i;
-//            }
-//        }
+        int cixu = new Random().nextInt(PT_size);
 
-        return this.Candidate.get(cixu);
+        //right search
+        while(cixu < PT_size - 1){
+            if(Fitness(PT.get(cixu)) < Fitness(PT.get(cixu + 1))){
+                   cixu++;
+            }
+            else{
+                break;
+            }
+        }
+        return PT.get(cixu).get(new Random().nextInt(PT.get(cixu).size()));
     }
 
     @Override
@@ -104,7 +100,7 @@ public class PBS_art extends AbstractART {
 
         for (int i = 1; i <= times; i++) {
             FaultZone fz = new FaultZone_Point_Square(bd, failrate);
-            PBS_art pbs_block = new PBS_art(bd, p);
+            SBS_art pbs_block = new SBS_art(bd, p);
 
             temp = pbs_block.run(fz);
             result.add(temp);
