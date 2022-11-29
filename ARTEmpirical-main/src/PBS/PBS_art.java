@@ -18,6 +18,7 @@ public class PBS_art extends AbstractART {
     int count = 1;
 
     SubDomainSelection selectionStrategy = new MaximumSize();
+
     public List<List<Testcase>> SubDomains = new ArrayList<>();
     int partitions = 10;
     Double p;
@@ -25,6 +26,7 @@ public class PBS_art extends AbstractART {
     public PBS_art(DomainBoundary inputBoundary, Double p) {
         this.inputBoundary = inputBoundary;
         this.p=p;
+        selectionStrategy.SetTotal(total);
     }
 
     public PBS_art(){
@@ -51,41 +53,10 @@ public class PBS_art extends AbstractART {
         //分区
         Partitioning();
 
-        int cixu = -1;
-        int cur_size = -1;
-        List<Testcase> selectedDomain = SubDomains.get(0);
-        if(total.size()==0){
-            return Candidate.get(new Random().nextInt(Candidate.size()));
-        }
+        List<Testcase> selectedDomain  = selectionStrategy.select(SubDomains);
 
-        //采用Maximum size的选取策略
-        selectedDomain = selectionStrategy.select(SubDomains);
-//        for (List<Testcase> subDomain : SubDomains) {
-//            List<Testcase> temp = new ArrayList<>(subDomain);
-//            temp.retainAll(total);
-//            if (temp.size() == 0 && subDomain.size() > cur_size) {
-//                cur_size = subDomain.size();
-//                selectedDomain = subDomain;
-//            }
-//        }
+        return selectedDomain.get(new Random().nextInt(selectedDomain.size()));
 
-        return selectedDomain.get(new Random().nextInt(cur_size));
-
-//        for (int i = 0; i < this.Candidate.size(); i++) {
-//            mindist = Double.MAX_VALUE;
-//            for (int j = 0; j < this.total.size(); j++) {
-//                double dist = Testcase.Distance(this.Candidate.get(i), this.total.get(j), this.p);
-//                if (dist < mindist) {
-//                    mindist = dist;
-//                }
-//            }
-//            if (maxmin < mindist) {
-//                maxmin = mindist;
-//                cixu = i;
-//            }
-//        }
-
-//        return this.Candidate.get(cixu);
     }
 
     @Override
