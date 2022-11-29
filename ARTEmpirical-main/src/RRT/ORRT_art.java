@@ -79,7 +79,7 @@ public class ORRT_art extends AbstractART {
 
         for (int i = 1; i <= times; i++) {
             FaultZone fz=new FaultZone_Point_Square(bd, failrate);
-            ORRT_art orrt_block = new ORRT_art(bd, 1.5, p);
+            ORRT_art orrt_block = new ORRT_art(bd, 1.0, p);
             temp=orrt_block.run(fz);
             result.add(temp);
             System.out.println("第" + i + "次试验F_Measure：" + temp);
