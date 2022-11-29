@@ -17,7 +17,7 @@ public class PBS_art extends AbstractART {
     public DomainBoundary inputBoundary = new DomainBoundary();
     int count = 1;
 
-    SubDomainSelection selectionStrategy = new MaximumSize();
+    SubDomainSelection selectionStrategy = null;
 
     public List<List<Testcase>> SubDomains = new ArrayList<>();
     int partitions = 10;
@@ -26,13 +26,16 @@ public class PBS_art extends AbstractART {
     public PBS_art(DomainBoundary inputBoundary, Double p) {
         this.inputBoundary = inputBoundary;
         this.p=p;
-        selectionStrategy.SetTotal(total);
     }
 
     public PBS_art(){
 
     }
 
+    public void SetStrategy(SubDomainSelection s){
+        this.selectionStrategy = s;
+        selectionStrategy.SetTotal(total);
+    }
     public void Partitioning(){
         //这里使用随机分区的分区方法
         //将candidates分成随机块
@@ -87,7 +90,7 @@ public class PBS_art extends AbstractART {
         for (int i = 1; i <= times; i++) {
             FaultZone fz = new FaultZone_Point_Square(bd, failrate);
             PBS_art pbs_block = new PBS_art(bd, p);
-
+            pbs_block.SetStrategy(new FewestPreviouslyGenerated());
             temp = pbs_block.run(fz);
             result.add(temp);
             System.out.println("第" + i + "次试验F_Measure：" + temp);
