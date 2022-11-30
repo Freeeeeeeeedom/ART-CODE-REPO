@@ -34,20 +34,22 @@ public class TestEffectiveness {
 
 
     public static void main(String args[]) throws IOException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
-        Class<? extends AbstractART> algorithm=FSCS_art.class;
+        Class<? extends AbstractART> algorithm = FSCS_art.class;
         String basePath = "..\\..\\effectiveness\\";
-        File filedir=new File(basePath+algorithm.getName());
+        File filedir = new File(basePath+algorithm.getName());
         if(!filedir.exists()){
             filedir.mkdirs();
         }
         double[] areas = new double[]{0.01, 0.005, 0.002, 0.001}; // failure rate
+
         int[] dimensions = new int[]{2};  // dimension of inputdomain
+
         for (int dim : dimensions) {
             for (double area : areas) {
                 DomainBoundary bd = new DomainBoundary(dim, -5000, 5000);
-                String s1 = basePath + new StringBuffer(algorithm.getName()+"\\").append(dim).append("d-Block-").append(area).append(".txt");
-                String s2 = basePath + new StringBuffer(algorithm.getName()+"\\").append(dim).append("d-Strip-").append(area).append(".txt");
-                String s3 = basePath + new StringBuffer(algorithm.getName()+"\\").append(dim).append("d-Point-").append(area).append(".txt");
+                String s1 = basePath + algorithm.getName() + "\\" + dim + "d-Block-" + area + ".txt";
+                String s2 = basePath + algorithm.getName() + "\\" + dim + "d-Strip-" + area + ".txt";
+                String s3 = basePath + algorithm.getName() + "\\" + dim + "d-Point-" + area + ".txt";
 
                 test(bd, area, 1, s1, FSCS_art.class);
                 test(bd, area, 2, s2, FSCS_art.class);
