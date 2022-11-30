@@ -61,9 +61,9 @@ public class TestEffectiveness {
                 String s2 = basePath + algorithm.getName() + "\\" + dim + "d-Strip-" + area + ".txt";
                 String s3 = basePath + algorithm.getName() + "\\" + dim + "d-Point-" + area + ".txt";
 
-                test(bd, area, 1, s1, PBS_art.class);
-                test(bd, area, 2, s2, PBS_art.class);
-                test(bd, area, 3, s3, PBS_art.class);
+                test(bd, area, 1, s1, algorithm);
+                test(bd, area, 2, s2, algorithm);
+                test(bd, area, 3, s3, algorithm);
             }
         }
         System.exit(0);
