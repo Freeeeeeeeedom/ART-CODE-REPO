@@ -71,6 +71,10 @@ public class SBS_art extends AbstractART {
             PT = ga.PT_generate(PT_size,Candidate);
             SelectedT = new ArrayList<>(ga.evolution(PT,this));
         }
+        else if(evolution instanceof SimulatedRepulsion sr){
+            PT = sr.PT_generate(PT_size,Candidate);
+            SelectedT = new ArrayList<>(sr.evolution(PT,this));
+        }
         //right searc
         return SelectedT.get(0);
     }
