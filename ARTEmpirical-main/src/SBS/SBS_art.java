@@ -67,6 +67,10 @@ public class SBS_art extends AbstractART {
             PT = sa.PT_generate(PT_size,Candidate);
             SelectedT = new ArrayList<>(sa.evolution(PT,this));
         }
+        else if(evolution instanceof GeneticAlgorithm ga){
+            PT = ga.PT_generate(PT_size,Candidate);
+            SelectedT = new ArrayList<>(ga.evolution(PT,this));
+        }
         //right searc
         return SelectedT.get(0);
     }
@@ -96,7 +100,7 @@ public class SBS_art extends AbstractART {
         int dimension = 2;
         DomainBoundary bd = new DomainBoundary(dimension,-5000,5000);
 
-        evolution = new HillClimbing();
+        evolution = new GeneticAlgorithm();
 
         for (int i = 1; i <= times; i++) {
             FaultZone fz = new FaultZone_Point_Square(bd, failrate);
