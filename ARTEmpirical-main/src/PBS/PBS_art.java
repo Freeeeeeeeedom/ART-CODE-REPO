@@ -13,11 +13,20 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ * PBS 代码实现
+ * 论文：T. Y. Chen, R. G. Merkel, P. K. Wong, and G. Eddy, “Adaptive
+ * random testing through dynamic partitioning,” in Proceedings of
+ * the 4th International Conference on Quality Software (QSIC’04), 2004,
+ * pp. 79–86.
+ *
+ */
+
 public class PBS_art extends AbstractART {
     public DomainBoundary inputBoundary = new DomainBoundary();
     int count = 1;
 
-    SubDomainSelection selectionStrategy = new MaximumSize();
+    SubDomainSelection selectionStrategy = new NoTestCaseInTarget();
 
     public List<List<Testcase>> SubDomains = new ArrayList<>();
     int partitions = 10;
@@ -37,13 +46,25 @@ public class PBS_art extends AbstractART {
         selectionStrategy.SetTotal(total);
     }
     public void Partitioning(){
-        //这里使用随机分区的分区方法
+        //当strategy为Maximumsize时采用随机分区
+        //其余采用均匀分区
         //将candidates分成随机块
-        SubDomains.clear();
-        for(int i=0;i<partitions;i++) SubDomains.add(new ArrayList<Testcase>());
-        for (Testcase testcase : Candidate) {
-            int check = new Random().nextInt(4);
-            SubDomains.get(check).add(testcase);
+        if(selectionStrategy instanceof MaximumSize) {
+            SubDomains.clear();
+            for (int i = 0; i < partitions; i++) SubDomains.add(new ArrayList<Testcase>());
+            for (int i = 0; i < partitions; i++) {
+                SubDomains.get(i).add(Candidate.get(i));
+            }
+            for (int i = partitions; i < Candidate.size(); i++) {
+                SubDomains.get(new Random().nextInt(partitions)).add(Candidate.get(i));
+            }
+        }
+        else{
+            SubDomains.clear();
+            for(int i=0;i<partitions;i++) SubDomains.add(new ArrayList<>());
+            for(int i=0;i<Candidate.size();i++){
+                SubDomains.get(i % partitions).add(Candidate.get(i));
+            }
         }
     }
 
@@ -52,13 +73,11 @@ public class PBS_art extends AbstractART {
     public Testcase Best_candidate() {
         this.Candidate.clear();
         this.Candidate=Testcase.generateCandates(100,inputBoundary.getList());
-
         //分区
         Partitioning();
+
         List<Testcase> selectedDomain  = selectionStrategy.select(SubDomains);
-
         return selectedDomain.get(new Random().nextInt(selectedDomain.size()));
-
     }
 
     @Override
@@ -89,7 +108,9 @@ public class PBS_art extends AbstractART {
         for (int i = 1; i <= times; i++) {
             FaultZone fz = new FaultZone_Point_Square(bd, failrate);
             PBS_art pbs_block = new PBS_art(bd, p);
-            pbs_block.SetStrategy(new FewestPreviouslyGenerated());
+
+            pbs_block.SetStrategy(new NoTestCaseInTarget());
+
             temp = pbs_block.run(fz);
             result.add(temp);
             System.out.println("第" + i + "次试验F_Measure：" + temp);

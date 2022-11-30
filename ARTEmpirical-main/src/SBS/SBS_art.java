@@ -10,14 +10,22 @@ import model.Testcase;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
+
+/**
+ * SBS 代码实现
+ * 论文：2004-ASIAN-Adaptive random testing
+ */
 
 public class SBS_art extends AbstractART {
     public DomainBoundary inputBoundary = new DomainBoundary();
     int count = 1;
 
-    public List<List<Testcase>>  PT = new ArrayList<>();
+    List<List<Testcase>> PT = new ArrayList<>();
+    static Evolution evolution;
+
     int PT_size = 5;
 
     int partitions = 10;
@@ -30,14 +38,6 @@ public class SBS_art extends AbstractART {
 
     public SBS_art(){
 
-    }
-
-    public void PT_generate(){
-        for(int i=0;i<PT_size;i++)PT.add(new ArrayList<Testcase>());
-        for(int i=0;i<PT_size;i++) PT.get(i).add(Candidate.get(i));
-        for(int i=PT_size;i<Candidate.size();i++){
-            PT.get(new Random().nextInt(PT_size)).add(Candidate.get(i));
-        }
     }
 
     public double Fitness(List<Testcase> T){
@@ -57,20 +57,18 @@ public class SBS_art extends AbstractART {
         this.Candidate.clear();
         this.Candidate=Testcase.generateCandates(20,inputBoundary.getList());
 
-        PT_generate();
+        List<Testcase> SelectedT = new ArrayList<>();
 
-        int cixu = new Random().nextInt(PT_size);
-
-        //right search
-        while(cixu < PT_size - 1){
-            if(Fitness(PT.get(cixu)) < Fitness(PT.get(cixu + 1))){
-                   cixu++;
-            }
-            else{
-                break;
-            }
+        if(evolution instanceof HillClimbing hc){
+            PT =  hc.PT_generate(PT_size,Candidate);
+            SelectedT = new ArrayList<>(hc.evolution(PT,this));
         }
-        return PT.get(cixu).get(new Random().nextInt(PT.get(cixu).size()));
+        else if(evolution instanceof  SimulatedAnnealing sa){
+            PT = sa.PT_generate(PT_size,Candidate);
+            SelectedT = new ArrayList<>(sa.evolution(PT,this));
+        }
+        //right searc
+        return SelectedT.get(0);
     }
 
     @Override
@@ -97,6 +95,8 @@ public class SBS_art extends AbstractART {
         double failrate = 0.005;
         int dimension = 2;
         DomainBoundary bd = new DomainBoundary(dimension,-5000,5000);
+
+        evolution = new HillClimbing();
 
         for (int i = 1; i <= times; i++) {
             FaultZone fz = new FaultZone_Point_Square(bd, failrate);

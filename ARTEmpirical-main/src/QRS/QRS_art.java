@@ -17,6 +17,7 @@ import java.util.Random;
  *
  * Randomization component : Cranley-Patterson Rotation or Owen Scrambling or  Random Shaking and Rotation
  */
+
 public class QRS_art extends AbstractART {
     public DomainBoundary inputBoundary;
 
