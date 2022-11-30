@@ -20,6 +20,7 @@ public class StoreResults<E> implements Runnable {
 	}
 	void storeData() {
 		File file2 = new File(filePath);
+//		System.out.println(file2);
 		try {
 			if (!file2.exists()) {
 				file2.createNewFile();

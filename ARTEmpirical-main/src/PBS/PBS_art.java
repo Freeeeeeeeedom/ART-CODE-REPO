@@ -17,7 +17,7 @@ public class PBS_art extends AbstractART {
     public DomainBoundary inputBoundary = new DomainBoundary();
     int count = 1;
 
-    SubDomainSelection selectionStrategy = null;
+    SubDomainSelection selectionStrategy = new MaximumSize();
 
     public List<List<Testcase>> SubDomains = new ArrayList<>();
     int partitions = 10;
@@ -26,12 +26,12 @@ public class PBS_art extends AbstractART {
     public PBS_art(DomainBoundary inputBoundary, Double p) {
         this.inputBoundary = inputBoundary;
         this.p=p;
+        selectionStrategy.SetTotal(total);
     }
 
     public PBS_art(){
 
     }
-
     public void SetStrategy(SubDomainSelection s){
         this.selectionStrategy = s;
         selectionStrategy.SetTotal(total);
@@ -55,7 +55,6 @@ public class PBS_art extends AbstractART {
 
         //分区
         Partitioning();
-
         List<Testcase> selectedDomain  = selectionStrategy.select(SubDomains);
 
         return selectedDomain.get(new Random().nextInt(selectedDomain.size()));

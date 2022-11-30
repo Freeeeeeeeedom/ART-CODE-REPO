@@ -11,11 +11,12 @@ public abstract class AbstractART {
 
 
     public int run(FaultZone fz) {
-        Testcase testcase=null;
+        Testcase testcase = null;
         do{
             testcase = Best_candidate();
             count++;
             total.add(testcase);
+
         }while (fz.isCorrect(testcase));
         return count;
     }

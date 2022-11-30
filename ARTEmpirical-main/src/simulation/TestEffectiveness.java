@@ -19,11 +19,15 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import PBS.PBS_art;
+import QRS.QRS_art;
+import RRT.ORRT_art;
 import faultZone.*;
 import fscs.FSCS_art;
 import model.*;
 
 import javax.swing.*;
+
 
 public class TestEffectiveness {
     //测试有效性
@@ -31,12 +35,16 @@ public class TestEffectiveness {
     final static double lp = Parameters.lp;
     final static int times = 100; // The times to run experiments
     final static int thread_pool_num = Parameters.thread_pool_num;
+
     final static double R = Parameters.R;
 
 
+    static Class<? extends AbstractART> algorithm = ORRT_art.class;
+
     public static void main(String args[]) throws IOException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
-        Class<? extends AbstractART> algorithm = FSCS_art.class;
-        String basePath = "..\\..\\effectiveness\\";
+
+
+        String basePath = "..\\effectiveness\\";
         File filedir = new File(basePath+algorithm.getName());
         if(!filedir.exists()){
             filedir.mkdirs();
@@ -53,9 +61,9 @@ public class TestEffectiveness {
                 String s2 = basePath + algorithm.getName() + "\\" + dim + "d-Strip-" + area + ".txt";
                 String s3 = basePath + algorithm.getName() + "\\" + dim + "d-Point-" + area + ".txt";
 
-                test(bd, area, 1, s1, FSCS_art.class);
-                test(bd, area, 2, s2, FSCS_art.class);
-                test(bd, area, 3, s3, FSCS_art.class);
+                test(bd, area, 1, s1, PBS_art.class);
+                test(bd, area, 2, s2, PBS_art.class);
+                test(bd, area, 3, s3, PBS_art.class);
             }
         }
         System.exit(0);
@@ -92,10 +100,10 @@ public class TestEffectiveness {
 
         for (int i = 1; i <= times; i++) {
             System.out.print(i);
-            AbstractART fscs_block = (AbstractART) constructor.newInstance(inputBoundary, Parameters.lp);
+            AbstractART art_block = (AbstractART) constructor.newInstance(inputBoundary, Parameters.lp);
 
             assert fz != null;
-            temp = fscs_block.run(fz);
+            temp = art_block.run(fz);
             //times for find fault
             FmeasureResults.add(temp);
 

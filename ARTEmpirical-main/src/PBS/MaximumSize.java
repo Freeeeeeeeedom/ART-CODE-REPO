@@ -14,7 +14,7 @@ public class MaximumSize implements SubDomainSelection{
         List<Testcase> selectedDomain = SubDomains.get(0);
         for (List<Testcase> subDomain : SubDomains) {
             List<Testcase> temp = new ArrayList<>(subDomain);
-            temp.retainAll(total);
+            if(total!=null) temp.retainAll(total);
             if (temp.size() == 0 && subDomain.size() > cur_size) {
                 cur_size = subDomain.size();
                 selectedDomain = subDomain;

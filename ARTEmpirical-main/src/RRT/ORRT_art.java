@@ -94,6 +94,16 @@ public class ORRT_art extends AbstractART {
 
     @Override
     public void testEfficiency(int pointNum) {
+        Testcase testcase = new Testcase(inputBoundary);
+        while(total.size() < pointNum){ // 随机生成n个候选的测试用例
 
+            total.add(testcase);
+            Candidate = new ArrayList<Testcase>();
+            for (int i = 0; i < 10; i++) {
+                Candidate.add(new Testcase(inputBoundary));
+            }
+
+            testcase = Best_candidate();
+        }
     }
 }

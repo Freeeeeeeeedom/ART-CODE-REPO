@@ -62,7 +62,7 @@ public class TestEfficiency {
 		for (int i = 0; i < times; i++) {
 			long n1 = System.currentTimeMillis();
 
-            AbstractART fscs_block = (AbstractART) constructor.newInstance(inputBoundary, Parameters.lp);
+            AbstractART art_block = (AbstractART) constructor.newInstance(inputBoundary, Parameters.lp);
 
 			fscs = new FSCS_art(inputBoundary,lp);
 			fscs.testEfficiency(pointNum);
