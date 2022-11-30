@@ -5,6 +5,16 @@ import model.Testcase;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * PBS 代码实现
+ * C. Chow, T. Y. Chen, and T. H. Tse, “The ART of divide and
+ * conquer: An innovative approach to improving the efficiency of
+ * adaptive random testing,” in Proceedings of the 13th International
+ * Conference on Quality Software (QSIC’13), 2013, pp. 268–275.
+ *
+ */
+
+
 public class FewestPreviouslyGenerated implements SubDomainSelection{
     public List<Testcase> total = null;
     @Override

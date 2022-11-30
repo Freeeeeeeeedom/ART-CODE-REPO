@@ -58,7 +58,7 @@ public class TestEffectiveness {
      * @param failrate      The failrate used to generate the failure pattern.
      * @param faultZoneFlag 1: Block failure region; 2: Strip failure region; 3: Point failure region;
      * @param filePath      The results will be stored in this filepath
-     * @param methodName    The method to generate test cases
+     * @param method    The method to generate test cases
      */
 
     public static void test(DomainBoundary inputBoundary, double failrate, int faultZoneFlag, String filePath, Class method) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {

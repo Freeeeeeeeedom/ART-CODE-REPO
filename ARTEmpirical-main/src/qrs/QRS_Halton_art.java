@@ -18,7 +18,12 @@ import java.util.Random;
  *
  * author: yhj
  */
+<<<<<<< HEAD:ARTEmpirical-main/src/qrs/QRS_Halton_art.java
 public class QRS_Halton_art extends AbstractART {
+=======
+
+public class QRS_art extends AbstractART {
+>>>>>>> 560116392d8292a437d173d0af7ce9750de515a6:ARTEmpirical-main/src/QRS/QRS_art.java
     public DomainBoundary inputBoundary;
 
     public double p;
