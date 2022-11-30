@@ -44,6 +44,7 @@ public class TestEfficiency {
 
 			try {
 				testART(dim, s1, inputBoundary, num,Parameters.lp, method);
+
 			} catch (IOException | NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -54,24 +55,30 @@ public class TestEfficiency {
 	public static void testART(int dim, String file, DomainBoundary inputBoundary, int pointNum, double lp, Class<? extends AbstractART> method) throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
 		FSCS_art fscs;
 		double sum = 0;
-		ArrayList<Double> result=new ArrayList<Double>();
+
+		ArrayList<Double> result = new ArrayList<Double>();
         Constructor constructor = method.getConstructor(DomainBoundary.class, Double.class);
+
 		for (int i = 0; i < times; i++) {
 			long n1 = System.currentTimeMillis();
+
             AbstractART fscs_block = (AbstractART) constructor.newInstance(inputBoundary, Parameters.lp);
+
 			fscs = new FSCS_art(inputBoundary,lp);
 			fscs.testEfficiency(pointNum);
+
 			long n2 = System.currentTimeMillis();
 
 			if (i != 0 && i != 1 && i != 2) {
-				double temp=n2 - n1;
+				double temp = n2 - n1;
 				sum = sum + temp;
 				result.add(temp);
 				System.out.print(i+"_"+temp+"\t");
 			}
+
 		}
 		double num = times - 3;
-		System.out.println("\r\n ART d="+dim+"\tpointNum="+pointNum+"\t"+sum / num  + "\t");
+		System.out.println("\r\n ART d = " + dim + "\tpointNum = " + pointNum + "\t" + sum / num  + "\t");
 
 	}
 

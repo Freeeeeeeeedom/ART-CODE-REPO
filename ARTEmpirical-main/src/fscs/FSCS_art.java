@@ -103,14 +103,17 @@ public class FSCS_art extends AbstractART {
      */
     @Override
     public void testEfficiency(int pointNum) { // 计算效率测试
-        Testcase testcase=new Testcase(inputBoundary);
-        while(total.size()<pointNum){ // 随机生成n个候选的测试用例
+
+        Testcase testcase = new Testcase(inputBoundary);
+        while(total.size() < pointNum){ // 随机生成n个候选的测试用例
+
             total.add(testcase);
-            Candidate=new ArrayList<Testcase>();
+            Candidate = new ArrayList<Testcase>();
             for (int i = 0; i < 10; i++) {
                 Candidate.add(new Testcase(inputBoundary));
             }
-            testcase=Best_candidate();
+
+            testcase = Best_candidate();
         }
     }
 
