@@ -1,6 +1,5 @@
-package PBS;
+package pbs;
 
-import model.AbstractART;
 import model.Testcase;
 
 import java.util.ArrayList;

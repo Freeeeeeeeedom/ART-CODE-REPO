@@ -1,4 +1,4 @@
-package PBS;
+package pbs;
 
 import faultZone.FaultZone;
 import faultZone.FaultZone_Point_Square;
@@ -10,8 +10,6 @@ import model.Testcase;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class PBS_art extends AbstractART {
     public DomainBoundary inputBoundary = new DomainBoundary();

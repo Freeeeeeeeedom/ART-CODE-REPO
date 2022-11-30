@@ -1,8 +1,7 @@
-package RRT;
+package rrt;
 
 import faultZone.FaultZone;
 import faultZone.FaultZone_Point_Square;
-import fscs.FSCS_art;
 import model.AbstractART;
 import model.DomainBoundary;
 import model.Parameters;
@@ -13,7 +12,7 @@ import java.util.Random;
 
 
 /**
- * RRT代码实现
+ * ORRT代码实现
  * 论文：2006-DBLP-Restricted Random Testing: Adaptive Random Testing by Exclusion.
  * ORRT通过在检测到的每一个检测到的test case附近创造一个exclusion zone
  */
@@ -29,6 +28,12 @@ public class ORRT_art extends AbstractART {
 
     double p;
 
+    /**
+     *
+     * @param inputBoundary 输入域
+     * @param targetExclusion 目标覆盖率
+     * @param p Parameters.lp
+     */
     public ORRT_art(DomainBoundary inputBoundary, double targetExclusion, double p){
         this.inputBoundary = inputBoundary;
         this.targetExclusion = targetExclusion;
