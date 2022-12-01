@@ -1,4 +1,4 @@
-package PBS;
+package pbs;
 
 import model.Testcase;
 
