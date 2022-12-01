@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 public class SimulatedRepulsion implements Evolution{
-    double Q = new Random().nextDouble(100.00);
+    double Q = new Random().nextDouble() * 100;
     int ps = 5;//组数
     public List<List<Testcase>> PT_generate(int PT_size,List<Testcase> candidates){
         List<List<Testcase>> PT = new ArrayList<>();

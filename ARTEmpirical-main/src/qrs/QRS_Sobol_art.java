@@ -45,7 +45,7 @@ public class QRS_Sobol_art extends AbstractART {
      * @throws IOException
      */
     public void setC() throws IOException {
-        String path = "C:\\SE\\Automatically Test\\ART-CODE-REPO\\ARTEmpirical-main\\new-joe-kuo-7.21201";
+        String path = "..\\new-joe-kuo-7.21201";
         File file = new File(path);
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
