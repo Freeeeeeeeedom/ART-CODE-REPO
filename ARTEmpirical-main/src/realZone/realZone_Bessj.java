@@ -27,10 +27,11 @@ public class realZone_Bessj extends FaultZone {
         try {
             double a = correct.bessj(x,y);
             double b = mutation.bessj(x,y);
-            return a == b;
+            if(a==b) return true;
         }
         catch (Exception e){
             return false;
         }
+        return false;
     }
 }
