@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * QRSä»£ç å®ç°
- * è®ºæ–‡ï¼š2005-Quasi-Random Testing
+ * QRS´úÂëÊµÏÖ
+ * ÂÛÎÄ£º2005-Quasi-Random Testing
  *
  * Quasi-Random-Sequence-Selection component: Halton
  * Halton Refered : 2006-COMPUTATIONAL INVESTIGATIONS OF QUASIRANDOM SEQUENCES IN GENERATING TEST CASES FOR SPECIFICATION-BASED TESTS
@@ -18,12 +18,8 @@ import java.util.Random;
  *
  * author: yhj
  */
-<<<<<<< HEAD:ARTEmpirical-main/src/qrs/QRS_Halton_art.java
 public class QRS_Halton_art extends AbstractART {
-=======
 
-public class QRS_art extends AbstractART {
->>>>>>> 560116392d8292a437d173d0af7ce9750de515a6:ARTEmpirical-main/src/QRS/QRS_art.java
     public DomainBoundary inputBoundary;
 
     public double p;
@@ -53,7 +49,7 @@ public class QRS_art extends AbstractART {
     @Override
     public void testEfficiency(int pointNum) {
         Testcase testcase = new Testcase(inputBoundary);
-        while(total.size() < pointNum){ // éšæœºç”Ÿæˆnä¸ªå€™é€‰çš„æµ‹è¯•ç”¨ä¾‹
+        while(total.size() < pointNum){ // Ëæ»úÉú³Én¸öºòÑ¡µÄ²âÊÔÓÃÀı
 
             total.add(testcase);
             Candidate = new ArrayList<Testcase>();
@@ -92,8 +88,8 @@ public class QRS_art extends AbstractART {
 
     /**
      * Generate Halton Num by Reversing Inverse
-     * åŸºäºæµ®ç‚¹æ•°å®ç°ï¼Œç¡®ä¿bitsæ•°ç›®è¶³å¤Ÿ
-     * @param Base è´¨æ•°ï¼Œdemension in Halton()
+     * »ùÓÚ¸¡µãÊıÊµÏÖ£¬È·±£bitsÊıÄ¿×ã¹»
+     * @param Base ÖÊÊı£¬demension in Halton()
      * @param i the ith digit in the sequence
      * @return
      */
@@ -104,12 +100,12 @@ public class QRS_art extends AbstractART {
         Inverse = 0.0;
         while(i != 0)
         {
-            // iä½™Baseæ±‚å‡ºiåœ¨"Base"è¿›åˆ¶ä¸‹çš„æœ€ä½ä½çš„æ•°
-            // ä¹˜ä»¥Digitå°†è¿™ä¸ªæ•°é•œåƒåˆ°å°æ•°ç‚¹å³è¾¹
+            // iÓàBaseÇó³öiÔÚ"Base"½øÖÆÏÂµÄ×îµÍÎ»µÄÊı
+            // ³ËÒÔDigit½«Õâ¸öÊı¾µÏñµ½Ğ¡ÊıµãÓÒ±ß
             Inverse += Digit * (double) (i % Base);
             Digit *= Radical;
 
-            // ié™¤ä»¥Baseå³å¯æ±‚å³ä¸€ä½çš„æ•°
+            // i³ıÒÔBase¼´¿ÉÇóÓÒÒ»Î»µÄÊı
             i /= Base;
         }
         return Inverse;
@@ -123,14 +119,14 @@ public class QRS_art extends AbstractART {
      */
     double Halton(int Dimension, int Index)
     {
-        // ç›´æ¥ç”¨ç¬¬Dimensionä¸ªè´¨æ•°ä½œä¸ºåº•æ•°è°ƒç”¨RadicalInverseå³å¯
+        // Ö±½ÓÓÃµÚDimension¸öÖÊÊı×÷Îªµ×Êıµ÷ÓÃRadicalInverse¼´¿É
         return RadicalInverse(Dimension, Index);
     }
 
     public static void main(String args[]) {
         int times = 3000;
-        long sums = 0;// åˆå§‹åŒ–ä½¿ç”¨çš„æµ‹è¯•ç”¨ä¾‹æ•°
-        int temp = 0;// åˆå§‹åŒ–æµ‹è¯•ç”¨ä¾‹è½åœ¨å¤±æ•ˆåŸŸçš„ä½¿ç”¨çš„æµ‹è¯•ç”¨ä¾‹çš„ä¸ªæ•°
+        long sums = 0;// ³õÊ¼»¯Ê¹ÓÃµÄ²âÊÔÓÃÀıÊı
+        int temp = 0;// ³õÊ¼»¯²âÊÔÓÃÀıÂäÔÚÊ§Ğ§ÓòµÄÊ¹ÓÃµÄ²âÊÔÓÃÀıµÄ¸öÊı
 
         ArrayList<Integer> result = new ArrayList<>();
 
@@ -145,13 +141,13 @@ public class QRS_art extends AbstractART {
 
             temp=qrs_block.run(fz);
             result.add(temp);
-            System.out.println("ç¬¬" + i + "æ¬¡è¯•éªŒF_Measureï¼š" + temp);
+            System.out.println("µÚ" + i + "´ÎÊÔÑéF_Measure£º" + temp);
             sums += temp;
         }
 
-        System.out.println("QRS_Halton_blockå½“å‰å‚æ•°ï¼šdimension = " + dimension +"   lp = " + p +"   failure-rate = " + failrate); //è¾“å‡ºå½“å‰å‚æ•°ä¿¡æ¯
-        System.out.println("Fm: " + sums / (double) times + "  ä¸”æœ€åçš„Fart/Frt: "
-                + sums / (double) times * failrate);// å¹³å‡æ¯æ¬¡ä½¿ç”¨çš„æµ‹è¯•ç”¨ä¾‹æ•°
+        System.out.println("QRS_Halton_blockµ±Ç°²ÎÊı£ºdimension = " + dimension +"   lp = " + p +"   failure-rate = " + failrate); //Êä³öµ±Ç°²ÎÊıĞÅÏ¢
+        System.out.println("Fm: " + sums / (double) times + "  ÇÒ×îºóµÄFart/Frt: "
+                + sums / (double) times * failrate);// Æ½¾ùÃ¿´ÎÊ¹ÓÃµÄ²âÊÔÓÃÀıÊı
 
 
     }

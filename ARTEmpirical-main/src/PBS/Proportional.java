@@ -1,10 +1,9 @@
-package PBS;
+package pbs;
 
 import model.Testcase;
 
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 public class Proportional implements SubDomainSelection{
     public List<Testcase> total = null;

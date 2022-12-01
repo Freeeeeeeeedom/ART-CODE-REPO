@@ -10,16 +10,13 @@ import model.Testcase;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-<<<<<<< HEAD
-=======
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
->>>>>>> 560116392d8292a437d173d0af7ce9750de515a6
 
 /**
- * SBS ä»£ç å®ç°
- * è®ºæ–‡ï¼š2004-ASIAN-Adaptive random testing
+ * SBS ´úÂëÊµÏÖ
+ * ÂÛÎÄ£º2004-ASIAN-Adaptive random testing
  */
 
 public class SBS_art extends AbstractART {
@@ -85,7 +82,7 @@ public class SBS_art extends AbstractART {
     @Override
     public void testEfficiency(int pointNum) {
         Testcase testcase = new Testcase(inputBoundary);
-        while(total.size()<pointNum){ // éšæœºç”Ÿæˆnä¸ªå€™é€‰çš„æµ‹è¯•ç”¨ä¾‹
+        while(total.size()<pointNum){ // Ëæ»úÉú³Én¸öºòÑ¡µÄ²âÊÔÓÃÀı
             total.add(testcase);
             Candidate = new ArrayList<Testcase>();
             for (int i = 0; i < 10; i++) {
@@ -97,8 +94,8 @@ public class SBS_art extends AbstractART {
 
     public static void main(String[] args) {
         int times = 3000;
-        long sums = 0;// åˆå§‹åŒ–ä½¿ç”¨çš„æµ‹è¯•ç”¨ä¾‹æ•°
-        int temp = 0;// åˆå§‹åŒ–æµ‹è¯•ç”¨ä¾‹è½åœ¨å¤±æ•ˆåŸŸçš„ä½¿ç”¨çš„æµ‹è¯•ç”¨ä¾‹çš„ä¸ªæ•°
+        long sums = 0;// ³õÊ¼»¯Ê¹ÓÃµÄ²âÊÔÓÃÀıÊı
+        int temp = 0;// ³õÊ¼»¯²âÊÔÓÃÀıÂäÔÚÊ§Ğ§ÓòµÄÊ¹ÓÃµÄ²âÊÔÓÃÀıµÄ¸öÊı
 
         ArrayList<Integer> result = new ArrayList<>();
 
@@ -115,12 +112,12 @@ public class SBS_art extends AbstractART {
 
             temp = pbs_block.run(fz);
             result.add(temp);
-            System.out.println("ç¬¬" + i + "æ¬¡è¯•éªŒF_Measureï¼š" + temp);
+            System.out.println("µÚ" + i + "´ÎÊÔÑéF_Measure£º" + temp);
             sums += temp;
         }
 
-        System.out.println("PBS_blockå½“å‰å‚æ•°ï¼šdimension = " + dimension +"   lp = " + p +"   failure-rate = " + failrate); //è¾“å‡ºå½“å‰å‚æ•°ä¿¡æ¯
-        System.out.println("Fm: " + sums / (double) times + "  ä¸”æœ€åçš„Fart/Frt: " + sums / (double) times * failrate);// å¹³å‡æ¯æ¬¡ä½¿ç”¨çš„æµ‹è¯•ç”¨ä¾‹æ•°
+        System.out.println("PBS_blockµ±Ç°²ÎÊı£ºdimension = " + dimension +"   lp = " + p +"   failure-rate = " + failrate); //Êä³öµ±Ç°²ÎÊıĞÅÏ¢
+        System.out.println("Fm: " + sums / (double) times + "  ÇÒ×îºóµÄFart/Frt: " + sums / (double) times * failrate);// Æ½¾ùÃ¿´ÎÊ¹ÓÃµÄ²âÊÔÓÃÀıÊı
 
     }
 }

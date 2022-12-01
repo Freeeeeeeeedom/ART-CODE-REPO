@@ -1,9 +1,9 @@
-package SBS;
+package sbs;
 
+import hybrid.EAR_art;
 import model.Testcase;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -53,4 +53,20 @@ public class GeneticAlgorithm implements Evolution{
         return selectedDomain;
     }
 
+    public List<Testcase> evolution_ear(List<List<Testcase>> PT, EAR_art ear) {
+        List<List<Testcase>> list = new ArrayList<>();
+        PT.forEach(p->{
+            if(ear.Fitness(p) > standard) list.add(p);
+        });
+        if(list.size()==0){
+            standard /= 2;
+            return evolution_ear(PT,ear);
+        }
+        List<Testcase> selectedDomain = list.get(0);
+        for(int i=1;i<list.size();i++){
+            selectedDomain = cross(selectedDomain,list.get(i));
+            selectedDomain = mutation(selectedDomain);
+        }
+        return selectedDomain;
+    }
 }
