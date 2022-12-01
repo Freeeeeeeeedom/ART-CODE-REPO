@@ -95,7 +95,7 @@ public class RealTestEffectiveness {
             //times for find fault
             try{
                 Object result = future.get(2, TimeUnit.SECONDS);
-                temp += (int) result;
+                temp = (int) result;
             }
             catch (Exception ex){
 
