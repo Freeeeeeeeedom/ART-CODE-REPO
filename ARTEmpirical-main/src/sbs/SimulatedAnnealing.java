@@ -1,4 +1,4 @@
-package SBS;
+package sbs;
 
 import model.Testcase;
 
@@ -6,9 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class HillClimbing implements Evolution{
-
-
+public class SimulatedAnnealing implements Evolution{
+    public double controlledprobility(){
+        return new Random().nextDouble();
+    }
     public List<List<Testcase>> PT_generate(int PT_size,List<Testcase> candidates){
         List<List<Testcase>> PT = new ArrayList<>();
         for(int i=0;i<PT_size;i++) PT.add(new ArrayList<>());
@@ -18,10 +19,9 @@ public class HillClimbing implements Evolution{
         }
         return PT;
     }
-
     @Override
-    public List<Testcase> evolution(List<List<Testcase>> PT,SBS_art sbs) {
-        List<Testcase> selectedDomain = new ArrayList<>();
+    public List<Testcase> evolution(List<List<Testcase>> PT, SBS_art sbs) {
+        List<Testcase> selectedDomain;
 
         int index = new Random().nextInt(PT.size());
         selectedDomain = PT.get(index);
@@ -31,12 +31,16 @@ public class HillClimbing implements Evolution{
                 index++;
             }
             else{
-                selectedDomain = PT.get(index);
-                break;
+                if(controlledprobility() < 0.5)
+                {
+                    selectedDomain = PT.get(index);
+                    break;
+                }
+                else{
+                    index++;
+                }
             }
         }
         return selectedDomain;
     }
-
-
 }

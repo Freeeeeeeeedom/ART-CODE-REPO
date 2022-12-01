@@ -1,4 +1,4 @@
-package SBS;
+package sbs;
 
 import model.Testcase;
 
