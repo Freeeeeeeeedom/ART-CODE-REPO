@@ -3,6 +3,17 @@
   <component name="LeetcodeEditor">
     <option name="projectConfig">
       <map>
+        <entry key="$PROJECT_DIR$/../../../Leethub/leetcode/editor/cn/[1779]找到最近的有相同 X 或 Y 坐标的点.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/../../../Leethub/leetcode/editor/cn/doc/content/[1779]找到最近的有相同 X 或 Y 坐标的点.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1779" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/../../../Leethub/leetcode/editor/cn/[1779]找到最近的有相同 X 或 Y 坐标的点.java" />
+              <option name="titleSlug" value="find-nearest-point-that-has-the-same-x-or-y-coordinate" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../../Leethub/leetcode/editor/cn/[895]最大频率栈.java">
           <value>
             <LeetcodeEditor>
