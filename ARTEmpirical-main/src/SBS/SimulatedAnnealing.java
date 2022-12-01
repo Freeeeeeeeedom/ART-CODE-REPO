@@ -21,7 +21,7 @@ public class SimulatedAnnealing implements Evolution{
     }
     @Override
     public List<Testcase> evolution(List<List<Testcase>> PT, SBS_art sbs) {
-        List<Testcase> selectedDomain = new ArrayList<>();
+        List<Testcase> selectedDomain;
 
         int index = new Random().nextInt(PT.size());
         selectedDomain = PT.get(index);

@@ -9,10 +9,7 @@ import model.Testcase;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * SBS 代码实现
@@ -75,6 +72,9 @@ public class SBS_art extends AbstractART {
             PT = sr.PT_generate(PT_size,Candidate);
             SelectedT = new ArrayList<>(sr.evolution(PT,this));
         }
+        else if(evolution instanceof LocalSpreding ls){
+            SelectedT = new ArrayList<>(ls.init(Candidate,this));
+        }
         //right searc
         return SelectedT.get(0);
     }
@@ -104,7 +104,7 @@ public class SBS_art extends AbstractART {
         int dimension = 2;
         DomainBoundary bd = new DomainBoundary(dimension,-5000,5000);
 
-        evolution = new GeneticAlgorithm();
+        evolution = new LocalSpreding();
 
         for (int i = 1; i <= times; i++) {
             FaultZone fz = new FaultZone_Point_Square(bd, failrate);
