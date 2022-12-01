@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import rrt.ORRT_art;
 import faultZone.*;
 import model.*;
+import sbs.SBS_art;
 
 
 public class TestEffectiveness {
@@ -22,7 +23,7 @@ public class TestEffectiveness {
     final static double R = Parameters.R;
 
 
-    static Class<? extends AbstractART> algorithm = ORRT_art.class;
+    static Class<? extends AbstractART> algorithm = SBS_art.class;
 
     public static void main(String args[]) throws IOException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 
@@ -84,7 +85,6 @@ public class TestEffectiveness {
         for (int i = 1; i <= times; i++) {
             System.out.print(i);
             AbstractART art_block = (AbstractART) constructor.newInstance(inputBoundary, Parameters.lp);
-
             assert fz != null;
             temp = art_block.run(fz);
             //times for find fault

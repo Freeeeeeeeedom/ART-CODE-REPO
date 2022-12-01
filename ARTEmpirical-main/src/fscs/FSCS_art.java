@@ -1,15 +1,18 @@
 package fscs;
 
 import faultZone.FaultZone;
-import faultZone.FaultZone_Bessj;
-import faultZone.FaultZone_Point_Square;
+import faultZone.FaultZone_Block;
+import realZone.ClassUtil;
+import realZone.realZone_Bessj;
 import model.AbstractART;
 import model.DomainBoundary;
 import model.Parameters;
 import model.Testcase;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Set;
 
 /**
  * FSCS 代码实现
@@ -60,7 +63,7 @@ public class FSCS_art extends AbstractART {
     }
 
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         int times = 3000;
         long sums = 0;// 初始化使用的测试用例数
         int temp = 0;// 初始化测试用例落在失效域的使用的测试用例的个数
@@ -74,7 +77,7 @@ public class FSCS_art extends AbstractART {
 
         for (int i = 1; i <= times; i++) {
 //            FaultZone fz = new FaultZone_Point_Square(bd, failrate);
-            FaultZone fb = new FaultZone_Bessj();
+            FaultZone fb = new FaultZone_Block();
 
             FSCS_art fscs_block = new FSCS_art(bd, p);
 

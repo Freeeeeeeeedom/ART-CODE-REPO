@@ -8,6 +8,7 @@ import model.DomainBoundary;
 import model.Parameters;
 import model.Testcase;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class SBS_art extends AbstractART {
     int count = 1;
 
     List<List<Testcase>> PT = new ArrayList<>();
-    static Evolution evolution;
+    static Evolution evolution = new HillClimbing();
 
     int PT_size = 5;
 
@@ -93,7 +94,7 @@ public class SBS_art extends AbstractART {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         int times = 3000;
         long sums = 0;// 初始化使用的测试用例数
         int temp = 0;// 初始化测试用例落在失效域的使用的测试用例的个数
@@ -105,7 +106,7 @@ public class SBS_art extends AbstractART {
         int dimension = 2;
         DomainBoundary bd = new DomainBoundary(dimension,-5000,5000);
 
-        evolution = new LocalSpreding();
+        evolution = new HillClimbing();
 
         for (int i = 1; i <= times; i++) {
             FaultZone fz = new FaultZone_Point_Square(bd, failrate);

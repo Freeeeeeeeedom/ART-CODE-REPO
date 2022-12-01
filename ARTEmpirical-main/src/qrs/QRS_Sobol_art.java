@@ -9,6 +9,7 @@ import model.Testcase;
 import sbs.SBS_art;
 
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -144,7 +145,7 @@ public class QRS_Sobol_art extends AbstractART {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         int times = 3000;
         long sums = 0;// 初始化使用的测试用例数
         int temp = 0;// 初始化测试用例落在失效域的使用的测试用例的个数

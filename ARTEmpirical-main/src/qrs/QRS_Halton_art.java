@@ -4,6 +4,7 @@ import faultZone.FaultZone;
 import faultZone.FaultZone_Point_Square;
 import model.*;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -123,7 +124,7 @@ public class QRS_Halton_art extends AbstractART {
         return RadicalInverse(Dimension, Index);
     }
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         int times = 3000;
         long sums = 0;// ��ʼ��ʹ�õĲ���������
         int temp = 0;// ��ʼ��������������ʧЧ���ʹ�õĲ��������ĸ���

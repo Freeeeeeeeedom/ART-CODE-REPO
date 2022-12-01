@@ -6,6 +6,7 @@ import faultZone.FaultZone_Point_Square;
 import fscs.FSCS_art;
 import model.*;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -99,7 +100,7 @@ public class Divide_Conquer_art extends AbstractART {
     }
 
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         int times = 3000;
         long sums = 0;// 初始化使用的测试用例数
         int temp = 0;// 初始化测试用例落在失效域的使用的测试用例的个数

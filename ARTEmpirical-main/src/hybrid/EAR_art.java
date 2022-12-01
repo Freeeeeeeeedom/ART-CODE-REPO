@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -20,7 +21,7 @@ import java.util.Random;
 
  2009-A Novel Evolutionary Approach for Adaptive Random Testing
 
- SBS & QRSÊµÏÖ
+ SBS & QRSÊµï¿½ï¿½
 
  SBS : SA
 
@@ -116,11 +117,11 @@ public class EAR_art extends AbstractART {
     {
         int r = i;
         int k;
-// ½«iÒÀ´ÎÓÒÒÆ£¬ÌáÈ¡2½øÖÆÀïµÄÃ¿Ò»Î»
+// ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ£ï¿½ï¿½ï¿½È¡2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿Ò»Î»
         for (k = 0; i > 0; i >>= 1, k++)
-            if ((i & 1) == 1) // Èôµ±Ç°Î»Îª1£¬ÔòÓÃÒì»òºÍ¾ØÕóÏà³Ë
+            if ((i & 1) == 1) // ï¿½ï¿½ï¿½ï¿½Ç°Î»Îª1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 r ^= C.get(Dimension).get(k);
-        return r / (double) (1 << k); // ³ýÒÔ2^M,ÒÆµ½Ð¡ÊýµãÓÒ±ß
+        return r / (double) (1 << k); // ï¿½ï¿½ï¿½ï¿½2^M,ï¿½Æµï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½Ò±ï¿½
     }
 
     public double Fitness(List<Testcase> T){
@@ -139,7 +140,7 @@ public class EAR_art extends AbstractART {
     @Override
     public void testEfficiency(int pointNum) {
         Testcase testcase = new Testcase(inputBoundary);
-        while(total.size()<pointNum){ // Ëæ»úÉú³Én¸öºòÑ¡µÄ²âÊÔÓÃÀý
+        while(total.size()<pointNum){ // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             total.add(testcase);
             Candidate = new ArrayList<Testcase>();
             for (int i = 0; i < 10; i++) {
@@ -149,10 +150,10 @@ public class EAR_art extends AbstractART {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         int times = 3000;
-        long sums = 0;// ³õÊ¼»¯Ê¹ÓÃµÄ²âÊÔÓÃÀýÊý
-        int temp = 0;// ³õÊ¼»¯²âÊÔÓÃÀýÂäÔÚÊ§Ð§ÓòµÄÊ¹ÓÃµÄ²âÊÔÓÃÀýµÄ¸öÊý
+        long sums = 0;// ï¿½ï¿½Ê¼ï¿½ï¿½Ê¹ï¿½ÃµÄ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        int temp = 0;// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§Ð§ï¿½ï¿½ï¿½Ê¹ï¿½ÃµÄ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½
 
         ArrayList<Integer> result = new ArrayList<>();
 
@@ -169,12 +170,12 @@ public class EAR_art extends AbstractART {
 
             temp = ear_block.run(fz);
             result.add(temp);
-            System.out.println("µÚ" + i + "´ÎÊÔÑéF_Measure£º" + temp);
+            System.out.println("ï¿½ï¿½" + i + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½F_Measureï¿½ï¿½" + temp);
             sums += temp;
         }
 
-        System.out.println("PBS_blockµ±Ç°²ÎÊý£ºdimension = " + dimension +"   lp = " + p +"   failure-rate = " + failrate); //Êä³öµ±Ç°²ÎÊýÐÅÏ¢
-        System.out.println("Fm: " + sums / (double) times + "  ÇÒ×îºóµÄFart/Frt: " + sums / (double) times * failrate);// Æ½¾ùÃ¿´ÎÊ¹ÓÃµÄ²âÊÔÓÃÀýÊý
+        System.out.println("PBS_blockï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½dimension = " + dimension +"   lp = " + p +"   failure-rate = " + failrate); //ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+        System.out.println("Fm: " + sums / (double) times + "  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Fart/Frt: " + sums / (double) times * failrate);// Æ½ï¿½ï¿½Ã¿ï¿½ï¿½Ê¹ï¿½ÃµÄ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     }
 }

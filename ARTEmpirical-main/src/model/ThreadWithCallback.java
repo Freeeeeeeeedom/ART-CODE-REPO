@@ -18,7 +18,6 @@ public  class ThreadWithCallback implements Callable {
 		@Override
 		public Object call() throws Exception {
 			int temp = this.method.run(fz);
-			System.out.println("sdfdfs");
 			return temp;
 		}
 

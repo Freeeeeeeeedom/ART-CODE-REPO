@@ -7,6 +7,7 @@ import model.DomainBoundary;
 import model.Parameters;
 import model.Testcase;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -24,7 +25,7 @@ public class PBS_art extends AbstractART {
     public DomainBoundary inputBoundary = new DomainBoundary();
     int count = 1;
 
-    SubDomainSelection selectionStrategy = new NoTestCaseInTarget();
+    SubDomainSelection selectionStrategy = new MaximumSize();
 
     public List<List<Testcase>> SubDomains = new ArrayList<>();
     int partitions = 10;
@@ -91,7 +92,7 @@ public class PBS_art extends AbstractART {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         int times = 3000;
         long sums = 0;// 初始化使用的测试用例数
         int temp = 0;// 初始化测试用例落在失效域的使用的测试用例的个数
