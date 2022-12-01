@@ -1,5 +1,5 @@
-package dt.mutant.Bessj;
-import dt.original.*;
+package mutant.Bessj;
+import original.*;
 
 // This is mutant program.
 // Author : ysma

@@ -141,13 +141,13 @@ public class QRS_Halton_art extends AbstractART {
 
             temp=qrs_block.run(fz);
             result.add(temp);
-            System.out.println("��" + i + "������F_Measure��" + temp);
+            System.out.println("第" + i + "次试验F_Measure：" + temp);
             sums += temp;
         }
 
-        System.out.println("QRS_Halton_block��ǰ������dimension = " + dimension +"   lp = " + p +"   failure-rate = " + failrate); //�����ǰ������Ϣ
-        System.out.println("Fm: " + sums / (double) times + "  ������Fart/Frt: "
-                + sums / (double) times * failrate);// ƽ��ÿ��ʹ�õĲ���������
+        System.out.println("ORRT_block当前参数：dimension = " + dimension +"   lp = " + p +"   failure-rate = " + failrate); //输出当前参数信息
+        System.out.println("Fm: " + sums / (double) times + "  且最后的Fart/Frt: "
+                + sums / (double) times * failrate + " Exlusion = ");// 平均每次使用的测试用例数
 
 
     }

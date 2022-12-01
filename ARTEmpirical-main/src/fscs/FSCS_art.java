@@ -1,23 +1,15 @@
 package fscs;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import faultZone.FaultZone;
+import faultZone.FaultZone_Bessj;
+import faultZone.FaultZone_Point_Square;
+import model.AbstractART;
+import model.DomainBoundary;
+import model.Parameters;
+import model.Testcase;
+
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.Callable;
-import java.util.concurrent.CompletionService;
-import java.util.concurrent.ExecutorCompletionService;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-
-import javax.tools.Tool;
-
-import faultZone.FaultZone;
-import faultZone.FaultZone_Block;
-import faultZone.FaultZone_Point_Square;
-import faultZone.FaultZone_Strip;
-import model.*;
 
 /**
  * FSCS 代码实现
@@ -81,10 +73,12 @@ public class FSCS_art extends AbstractART {
         DomainBoundary bd=new DomainBoundary(dimension,-5000,5000);
 
         for (int i = 1; i <= times; i++) {
-            FaultZone fz=new FaultZone_Point_Square(bd, failrate);
-            FSCS_art fscs_block= new FSCS_art(bd, p);
+//            FaultZone fz = new FaultZone_Point_Square(bd, failrate);
+            FaultZone fb = new FaultZone_Bessj();
 
-            temp=fscs_block.run(fz);
+            FSCS_art fscs_block = new FSCS_art(bd, p);
+
+            temp = fscs_block.run(fb);
             result.add(temp);
             System.out.println("第" + i + "次试验F_Measure：" + temp);
             sums += temp;
