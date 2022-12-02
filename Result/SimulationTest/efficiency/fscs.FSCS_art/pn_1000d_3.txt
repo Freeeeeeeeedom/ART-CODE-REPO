@@ -1,0 +1,2 @@
+point num: 1000
+sum/num: 57.775

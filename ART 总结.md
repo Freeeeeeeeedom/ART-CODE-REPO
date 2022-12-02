@@ -92,6 +92,8 @@ FSCS算法的逻辑是优先选择离未触发缺陷的测试用例更远的测�
 
 伪代码：
 
+![](./assets/image-20221128125554778.png)
+
 接口介绍
 
 | 接口                                          | 功能                                                         |
@@ -126,7 +128,7 @@ ORRT的底层逻辑和FSCS相似，同样认为错误输入相对集中，因此
 
 伪代码：
 
-![img](https://cq964bfarp.feishu.cn/space/api/box/stream/download/asynccode/?code=MjVhOTQxZTg3M2NmZTg0M2QxYTFkZDJkY2Y5N2RlOWJfbnVkeTlVY3poT29oVEZFVk96aEdXd0xkd3p3TmZydmtfVG9rZW46Ym94Y25VMzdyZXpWaVlPcHlOcERZS2dXUUZlXzE2Njk5ODg2NDc6MTY2OTk5MjI0N19WNA)
+![image-20221202230242403](./assets/image-20221202230242403.png)
 
 #### **Partitioning-schema component**
 
@@ -183,6 +185,8 @@ ORRT的底层逻辑和FSCS相似，同样认为错误输入相对集中，因此
 
 伪代码：
 
+![](./assets/image-20221202231208912.png)
+
 根据Quasi-random-sequence-selection component选择的随机序列的不同，我们提供了两种算法实现。
 
 #### **4.1 QRS_Halton_art**
@@ -227,7 +231,7 @@ Search-Based Strategy
 
 伪代码：
 
-![img](https://cq964bfarp.feishu.cn/space/api/box/stream/download/asynccode/?code=ZWU0M2NlMDA4OGI3YTg2MGIzZDVhMTFkOGIwOThiODJfSjRZMlVwV0RYUzZqeEJ0ekt3TVl3VWdKRzM5TW9qVUtfVG9rZW46Ym94Y25qMlVOSVYwbVdBMkVhbmk2cnNlTjk0XzE2Njk5ODg2NDc6MTY2OTk5MjI0N19WNA)
+![image-20221202230308539](./assets/image-20221202230308539.png)
 
 | public SBS_art(DomainBoundary inputBoundary, Double p) | 构造函数                                                     |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
