@@ -24,7 +24,7 @@ public class Mirror_art extends AbstractART {
     public DomainBoundary inputBoundary;
     public double p;
 
-    public Mirror_art(DomainBoundary inputBoundary, double p){
+    public Mirror_art(DomainBoundary inputBoundary, Double p){
         this.inputBoundary = inputBoundary;
         this.p = p;
     }

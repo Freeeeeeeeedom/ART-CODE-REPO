@@ -44,14 +44,14 @@ public class EAR_art extends AbstractART {
 
     int PT_size = 5;
 
-    public EAR_art(DomainBoundary inputBoundary, double p) throws IOException {
+    public EAR_art(DomainBoundary inputBoundary, Double p) throws IOException {
         setC();
         this.inputBoundary = inputBoundary;
         this.p = p;
     }
 
     public void setC() throws IOException {
-        String path = "";
+        String path = "ARTEmpirical-main/new-joe-kuo-7.21201";
         File file = new File(path);
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
@@ -95,7 +95,6 @@ public class EAR_art extends AbstractART {
 
     public void generateSobol(int num){
         ArrayList Candidate = new ArrayList<>();
-        ArrayList randomNum = new ArrayList<>();
         for (int j = 0; j < num; j++) {
             Testcase dimlist = new Testcase();
 

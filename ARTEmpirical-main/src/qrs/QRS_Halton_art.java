@@ -30,7 +30,7 @@ public class QRS_Halton_art extends AbstractART {
      * @param inputBoundary
      * @param p
      */
-    public QRS_Halton_art(DomainBoundary inputBoundary, double p){
+    public QRS_Halton_art(DomainBoundary inputBoundary, Double p){
         this.inputBoundary = inputBoundary;
         this.p = p;
     }

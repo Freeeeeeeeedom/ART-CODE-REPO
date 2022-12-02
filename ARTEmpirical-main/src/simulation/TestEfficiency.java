@@ -3,23 +3,20 @@ package simulation;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.io.Writer;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import fscs.FSCS_art;
+import hybrid.Divide_Conquer_art;
+import hybrid.EAR_art;
+import mart.Mirror_art;
+import mart.RBMT_art;
 import model.AbstractART;
 import model.DomainBoundary;
 import model.Parameters;
+import pbs.PBS_art;
+import qrs.QRS_Halton_art;
 
 public class TestEfficiency {
 
@@ -29,31 +26,38 @@ public class TestEfficiency {
 		int[] dimensionList = {3};
 
 		for (int dimension : dimensionList) {
-			efficiency(dimension, FSCS_art.class);
+			efficiency(dimension, PBS_art.class);
 		}
 	}
 
 	public static void efficiency(int dim, Class<? extends AbstractART> method) {
 		ArrayList<Integer> nums = new ArrayList<>();
 		nums.add(200);
-
+		nums.add(400);
+		nums.add(600);
+		nums.add(800);
+		nums.add(1000);
+		nums.add(2000);
 		DomainBoundary inputBoundary=new DomainBoundary(dim,-5000,5000);
 
 		for (int num : nums) {
-			String s1 = "E:\\pn_" + num +"d_"+dim+ ".txt";
-
+			String base = "..\\efficiency\\" + method.getName() + "\\FPG";
+			String s1 = base + "\\pn_" + num + "d_" + dim + ".txt";
+			File filedir = new File(base);
+			if(!filedir.exists()){
+				filedir.mkdirs();
+			}
 			try {
 				testART(dim, s1, inputBoundary, num,Parameters.lp, method);
 
 			} catch (IOException | NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	}
 
 	public static void testART(int dim, String file, DomainBoundary inputBoundary, int pointNum, double lp, Class<? extends AbstractART> method) throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-		FSCS_art fscs;
+		PBS_art art;
 		double sum = 0;
 
 		ArrayList<Double> result = new ArrayList<Double>();
@@ -64,8 +68,8 @@ public class TestEfficiency {
 
             AbstractART art_block = (AbstractART) constructor.newInstance(inputBoundary, Parameters.lp);
 
-			fscs = new FSCS_art(inputBoundary,lp);
-			fscs.testEfficiency(pointNum);
+			art = new PBS_art(inputBoundary,lp);
+			art.testEfficiency(pointNum);
 
 			long n2 = System.currentTimeMillis();
 
@@ -78,8 +82,16 @@ public class TestEfficiency {
 
 		}
 		double num = times - 3;
+
 		System.out.println("\r\n ART d = " + dim + "\tpointNum = " + pointNum + "\t" + sum / num  + "\t");
 
+		java.io.File F = new java.io.File(file);
+		FileWriter writeStream = new FileWriter(F);
+
+		writeStream.write("point num: " + pointNum + "\r\n" +"sum/num: "+ sum/num + "\r\n" );
+
+		writeStream.flush();
+		writeStream.close();
 	}
 
 }

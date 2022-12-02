@@ -18,7 +18,7 @@ import java.util.Random;
  * ORRT通过在检测到的每一个检测到的test case附近创造一个exclusion zone
  */
 public class ORRT_art extends AbstractART {
-    public DomainBoundary inputBoundary = new DomainBoundary();
+    public DomainBoundary inputBoundary;
     public double targetExclusion = 0;
 
     /**
@@ -32,12 +32,11 @@ public class ORRT_art extends AbstractART {
     /**
      *
      * @param inputBoundary 输入域
-     * @param targetExclusion 目标覆盖率
      * @param p Parameters.lp
      */
-    public ORRT_art(DomainBoundary inputBoundary, double targetExclusion, double p){
+    public ORRT_art(DomainBoundary inputBoundary, Double p){
         this.inputBoundary = inputBoundary;
-        this.targetExclusion = targetExclusion;
+        this.targetExclusion = 1.0;
         this.p = p;
     }
 
@@ -85,7 +84,7 @@ public class ORRT_art extends AbstractART {
 
         for (int i = 1; i <= times; i++) {
             FaultZone fz=new FaultZone_Point_Square(bd, failrate);
-            ORRT_art orrt_block = new ORRT_art(bd, 1.0, p);
+            ORRT_art orrt_block = new ORRT_art(bd, p);
             temp=orrt_block.run(fz);
             result.add(temp);
             System.out.println("第" + i + "次试验F_Measure：" + temp);
