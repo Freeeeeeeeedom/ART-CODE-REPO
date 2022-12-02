@@ -17,6 +17,9 @@ import model.DomainBoundary;
 import model.Parameters;
 import pbs.PBS_art;
 import qrs.QRS_Halton_art;
+import qrs.QRS_Sobol_art;
+import rrt.ORRT_art;
+import sbs.SBS_art;
 
 public class TestEfficiency {
 
@@ -26,7 +29,7 @@ public class TestEfficiency {
 		int[] dimensionList = {3};
 
 		for (int dimension : dimensionList) {
-			efficiency(dimension, PBS_art.class);
+			efficiency(dimension, SBS_art.class);
 		}
 	}
 
@@ -41,7 +44,7 @@ public class TestEfficiency {
 		DomainBoundary inputBoundary=new DomainBoundary(dim,-5000,5000);
 
 		for (int num : nums) {
-			String base = "..\\efficiency\\" + method.getName() + "\\FPG";
+			String base = "..\\efficiency\\" + method.getName() +"\\SR";
 			String s1 = base + "\\pn_" + num + "d_" + dim + ".txt";
 			File filedir = new File(base);
 			if(!filedir.exists()){
@@ -57,7 +60,7 @@ public class TestEfficiency {
 	}
 
 	public static void testART(int dim, String file, DomainBoundary inputBoundary, int pointNum, double lp, Class<? extends AbstractART> method) throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-		PBS_art art;
+		SBS_art art;
 		double sum = 0;
 
 		ArrayList<Double> result = new ArrayList<Double>();
@@ -68,7 +71,7 @@ public class TestEfficiency {
 
             AbstractART art_block = (AbstractART) constructor.newInstance(inputBoundary, Parameters.lp);
 
-			art = new PBS_art(inputBoundary,lp);
+			art = new SBS_art(inputBoundary,lp);
 			art.testEfficiency(pointNum);
 
 			long n2 = System.currentTimeMillis();

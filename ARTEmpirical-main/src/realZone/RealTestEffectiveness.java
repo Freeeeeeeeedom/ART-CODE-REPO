@@ -76,14 +76,11 @@ public class RealTestEffectiveness {
         int temp = 0;
 
         String packName = "dt.mutant." + originalName;
-
         Constructor<AbstractART> constructor = method.getConstructor(DomainBoundary.class, Double.class);
 
         Set<Class<?>> mutations = ClassUtil.getClasses(packName);
-
+        //获取该包名下的所有类
         int index = 0;
-
-
         for(Class<?> mutation : mutations){
             System.out.print(index);
             index++;
@@ -93,13 +90,9 @@ public class RealTestEffectiveness {
             AbstractART art_block = constructor.newInstance(inputBoundary, Parameters.lp);
 
             ThreadWithCallback callback = new ThreadWithCallback(inputBoundary,art_block,fr);
-
-
             ExecutorService executor = Executors.newFixedThreadPool(2);
 
             Future future = executor.submit(callback::call);
-//            temp = 0;
-            //times for find fault
             try{
                 Object result = future.get(2, TimeUnit.SECONDS);
                 temp = (int) result;

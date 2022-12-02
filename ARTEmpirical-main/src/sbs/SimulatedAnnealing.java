@@ -7,9 +7,11 @@ import java.util.List;
 import java.util.Random;
 
 public class SimulatedAnnealing implements Evolution{
+    //随机概率函数
     public double controlledprobility(){
         return new Random().nextDouble();
     }
+    //测试用例集合生成
     public List<List<Testcase>> PT_generate(int PT_size,List<Testcase> candidates){
         List<List<Testcase>> PT = new ArrayList<>();
         for(int i=0;i<PT_size;i++) PT.add(new ArrayList<>());
@@ -19,6 +21,7 @@ public class SimulatedAnnealing implements Evolution{
         }
         return PT;
     }
+    //演化函数
     @Override
     public List<Testcase> evolution(List<List<Testcase>> PT, SBS_art sbs) {
         List<Testcase> selectedDomain;
