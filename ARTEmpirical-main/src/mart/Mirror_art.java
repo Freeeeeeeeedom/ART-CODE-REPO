@@ -32,12 +32,13 @@ public class Mirror_art extends AbstractART {
     @Override
     public Testcase Best_candidate() {
         this.Candidate.clear();
-        generateHalton(10);
+        generateHalton(10); //generate Halton Sequence
 
         if(total.size()==0){
             return Candidate.get(new Random().nextInt(Candidate.size()));
         }
 
+        //set mirror partition
         for(int i = 0; i < 10; i++){
             Testcase testcase = this.Candidate.get(i);
             Testcase reflectTestcase = new Testcase();
@@ -48,6 +49,7 @@ public class Mirror_art extends AbstractART {
             this.Candidate.add(reflectTestcase);
         }
 
+        //select by FSCS
         int i = 0, cixu = -1;
         double mindist, maxmin = 0;
 
