@@ -46,7 +46,7 @@ public class QRS_Sobol_art extends AbstractART {
      * @throws IOException
      */
     public void setC() throws IOException {
-        String path = "../../new-joe-kuo-7";
+        String path = "ARTEmpirical-main/new-joe-kuo-7.21201";
         File file = new File(path);
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
@@ -100,7 +100,6 @@ public class QRS_Sobol_art extends AbstractART {
 
     public void generateSobol(int num){
         ArrayList<Testcase> Candidate = new ArrayList<>();
-        ArrayList<Integer> randomNum = new ArrayList<>();
         for (int j = 0; j < num; j++) {
             Testcase dimlist = new Testcase();
 
