@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -30,7 +31,7 @@ public class RealTestEffectiveness {
 
 
     static Class<? extends AbstractART> algorithm = FSCS_art.class;
-    static String originalName = "Triangle2";
+    static String originalName = "Variance";
     public static void main(String args[]) throws Exception {
 
 
@@ -85,7 +86,7 @@ public class RealTestEffectiveness {
             System.out.print(index);
             index++;
 
-            FaultZone fr = new realZone_Triangle2(mutation.getConstructor(),mutation.getMethods()[0]);
+            FaultZone fr = new realZone_Variance(mutation.getConstructor(),mutation.getMethods()[0]);
             AbstractART art_block = constructor.newInstance(inputBoundary, Parameters.lp);
 
             ThreadWithCallback callback = new ThreadWithCallback(inputBoundary,art_block,fr);
@@ -94,10 +95,10 @@ public class RealTestEffectiveness {
             ExecutorService executor = Executors.newFixedThreadPool(2);
 
             Future future = executor.submit(callback::call);
-            temp = 0;
+//            temp = 0;
             //times for find fault
             try{
-                Object result = future.get(10, TimeUnit.SECONDS);
+                Object result = future.get(2, TimeUnit.SECONDS);
                 temp = (int) result;
             }
             catch (Exception ex){
