@@ -51,7 +51,7 @@ public class EAR_art extends AbstractART {
     }
 
     public void setC() throws IOException {
-        String path = "C:/SE/Automatically Test/ART-CODE-REPO/ARTEmpirical-main/new-joe-kuo-7.21201";
+        String path = "";
         File file = new File(path);
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
@@ -152,8 +152,8 @@ public class EAR_art extends AbstractART {
 
     public static void main(String[] args) throws IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         int times = 3000;
-        long sums = 0;// ��ʼ��ʹ�õĲ���������
-        int temp = 0;// ��ʼ��������������ʧЧ���ʹ�õĲ��������ĸ���
+        long sums = 0;
+        int temp = 0;
 
         ArrayList<Integer> result = new ArrayList<>();
 
@@ -170,12 +170,12 @@ public class EAR_art extends AbstractART {
 
             temp = ear_block.run(fz);
             result.add(temp);
-            System.out.println("��" + i + "������F_Measure��" + temp);
+            System.out.println("第" + i + "次实验F_Measure：" + temp);
             sums += temp;
         }
 
-        System.out.println("PBS_block��ǰ������dimension = " + dimension +"   lp = " + p +"   failure-rate = " + failrate); //�����ǰ������Ϣ
-        System.out.println("Fm: " + sums / (double) times + "  ������Fart/Frt: " + sums / (double) times * failrate);// ƽ��ÿ��ʹ�õĲ���������
+        System.out.println("PBS_block各项参数dimension = " + dimension +"   lp = " + p +"   failure-rate = " + failrate);
+        System.out.println("Fm: " + sums / (double) times + "  Fart/Frt: " + sums / (double) times * failrate);
 
     }
 }
