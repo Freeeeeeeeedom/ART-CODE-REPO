@@ -11,9 +11,12 @@
 
 本项目针对数值程序领域，旨在复现现有的经典的自适应随机测试算法，并对其进行有效性比较。项目的基本框架来自于 [ARTEmpirical-main](https://box.nju.edu.cn/d/9288e9a87a5c4c3c961e/), 我们在框架代码的基础上实现了多种自适应测试算法，以及检测真实数值程序的测试功能。
 
-对于此次实验，我们实现了以下功能：
+### 实现功能
 
-1. 对自适应测试算法的实现，
+1. 对自适应测试算法的实现
+2. 对真实数值程序的缺陷检测
+3. 增加了可以给测试用的数值程序
+4. 对结果的分析和比较文档
 
 ## 2. 主体框架介绍
 
@@ -364,3 +367,37 @@ for(Class<?> mutation : mutations){
 
 ## 5. 一些困难的算法和加分项
 
+### 1. TPBS
+
+TPBS即Test-Profile-Based Strategy
+
+论文来源：[Adaptive Random Testing by Exclusion through Test Profile](https://ieeexplore.ieee.org/document/5562948/)
+
+算法介绍：TPBS根据Test Profile(不知道该怎么翻译)生成输入，同时根据生成的输入测试结果调整test profile，一个比较典型的Test Profile是根据已执行的测试用例调整其周围输入域的被选中的概率。
+
+难点：
+
+1. 不知道怎么模拟概率
+2. 对于执行多个未成功用例时其他测试用例的概率分布
+
+![image-20221202215319521](./assets/image-20221202215319521.png)
+
+### 2. backpack数值程序
+
+我们本打算使用backpack生成变异体用作真实程序检测缺陷，但是由于使用的工具mujava停止维护，只提供了origin版本。
+
+该程序改编自著名的动态规划算法-背包算法。
+
+### 3. 基于Niederreiter序列的QRS算法
+
+实际上，由于Niederreiter的算法看不懂，我们在找了大量数学和统计上相关的论文后还没有理解，最终放弃了该算法的实现。
+
+### 4. RQRT
+
+来源：An Innovative Approach to Randomising Quasi-Random Sequences and Its Application into Software Testing
+
+该算法通过对Sobol序列的一系列操作实现，但是由于这些操作对数字的精度要求太高，而且数学原理也非常复杂，我们最终放弃了该算法。
+
+伪代码：
+
+![image-20221202221554225](./assets/image-20221202221554225.png)
