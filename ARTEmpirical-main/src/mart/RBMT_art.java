@@ -44,7 +44,6 @@ public class RBMT_art extends AbstractART {
 
     }
 
-    public RBMT_art(){}
     @Override
     public Testcase Best_candidate() {
         this.Candidate.clear();

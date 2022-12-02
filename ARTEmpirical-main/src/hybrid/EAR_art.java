@@ -21,7 +21,7 @@ import java.util.Random;
 
  2009-A Novel Evolutionary Approach for Adaptive Random Testing
 
- SBS & QRSʵ��
+ SBS & QRS结合
 
  SBS : SA
 
@@ -116,11 +116,11 @@ public class EAR_art extends AbstractART {
     {
         int r = i;
         int k;
-// ��i�������ƣ���ȡ2�������ÿһλ
+        // 将i依次右移，提取2进制里的每一位
         for (k = 0; i > 0; i >>= 1, k++)
-            if ((i & 1) == 1) // ����ǰλΪ1���������;������
+            if ((i & 1) == 1) // 若当前位为1，则用异或和矩阵相乘
                 r ^= C.get(Dimension).get(k);
-        return r / (double) (1 << k); // ����2^M,�Ƶ�С�����ұ�
+        return r / (double) (1 << k); // 除以2^M,移到小数点右边
     }
 
     public double Fitness(List<Testcase> T){
@@ -139,7 +139,7 @@ public class EAR_art extends AbstractART {
     @Override
     public void testEfficiency(int pointNum) {
         Testcase testcase = new Testcase(inputBoundary);
-        while(total.size()<pointNum){ // �������n����ѡ�Ĳ�������
+        while(total.size() < pointNum){ // 随机生成n个候选的测试用例
             total.add(testcase);
             Candidate = new ArrayList<Testcase>();
             for (int i = 0; i < 10; i++) {

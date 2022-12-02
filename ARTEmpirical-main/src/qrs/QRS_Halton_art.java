@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * QRS����ʵ��
- * ���ģ�2005-Quasi-Random Testing
+ * QRS 代码实现
+ * 论文：2005-Quasi-Random Testing
  *
  * Quasi-Random-Sequence-Selection component: Halton
  * Halton Refered : 2006-COMPUTATIONAL INVESTIGATIONS OF QUASIRANDOM SEQUENCES IN GENERATING TEST CASES FOR SPECIFICATION-BASED TESTS

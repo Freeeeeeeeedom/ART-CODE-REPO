@@ -6,7 +6,6 @@ import model.AbstractART;
 import model.DomainBoundary;
 import model.Parameters;
 import model.Testcase;
-import sbs.SBS_art;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
@@ -38,8 +37,7 @@ public class QRS_Sobol_art extends AbstractART {
         this.p = p;
     }
 
-    public QRS_Sobol_art(){
-    }
+    public QRS_Sobol_art(){}
 
     /**
      * C from Sobol Sequence Generator
@@ -71,31 +69,9 @@ public class QRS_Sobol_art extends AbstractART {
     @Override
     public Testcase Best_candidate() {
         this.Candidate.clear();
-        generateSobol(10);
+        generateSobol(1);
 
-        if(total.size()==0){
-            return Candidate.get(new Random().nextInt(Candidate.size()));
-        }
-        double mindist, maxmin = 0;
-        int cixu = -1;
-        //Generate new testcase using Sobol
-
-
-        for (int i = 0; i < this.Candidate.size(); i++) {
-            mindist = Double.MAX_VALUE;
-            for (int j = 0; j < this.total.size(); j++) {
-                double dist = Testcase.Distance(this.Candidate.get(i), this.total.get(j), this.p);
-                if (dist < mindist) {
-                    mindist = dist;
-                }
-            }
-            if (maxmin < mindist) {
-                maxmin = mindist;
-                cixu = i;
-            }
-        }
-
-        return this.Candidate.get(cixu);
+        return this.Candidate.get(0);
     }
 
     public void generateSobol(int num){
