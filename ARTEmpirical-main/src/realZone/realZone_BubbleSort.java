@@ -1,5 +1,6 @@
 package realZone;
 import dt.original.Bessj;
+import dt.original.BubbleSort;
 import faultZone.FaultZone;
 import model.Parameters;
 import model.Testcase;
@@ -11,18 +12,19 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Random;
 
-public class realZone_Bessj extends FaultZone {
+public class realZone_BubbleSort extends FaultZone {
 
-    Bessj correct = new Bessj();
-    Bessj mutation;
+    BubbleSort correct = new BubbleSort();
+    BubbleSort mutation;
     Method method;
     Class<?>[] paramters;
     int pcount = 0;
 
 
-    public realZone_Bessj(Constructor constructor, Method m) throws InstantiationException, IllegalAccessException, InvocationTargetException {
-        this.mutation = (Bessj) constructor.newInstance();
+    public realZone_BubbleSort(Constructor constructor, Method m) throws InstantiationException, IllegalAccessException, InvocationTargetException {
+        this.mutation = (BubbleSort) constructor.newInstance();
         pcount = m.getParameterCount();
         paramters = m.getParameterTypes();
         method = m;
@@ -31,14 +33,23 @@ public class realZone_Bessj extends FaultZone {
     @Override
     public Boolean isCorrect(Testcase testcase) throws IllegalArgumentException {
         int x = (int) testcase.getValue(0);
-        double y = testcase.getValue(1);
+        int y = (int) testcase.getValue(1);
 //        System.out.println();
 //        System.out.println("x = " + x + " y = " + y);
 //        return false;
+        int length = new Random().nextInt(100) + 2;
+        int[] arr = new int[length];
+        arr[0] = x;
+        arr[1] = y;
+        for(int i=0;i<length;i++){
+            arr[i] = x * y * (1 + new Random().nextInt(10));
+        }
         try {
-            double a = correct.bessj(x,y);
-            double b = mutation.bessj(x,y);
-            if(a==b) return true;
+            int[] a = arr.clone();
+            int[] b = arr.clone();
+            correct.exe(a);
+            mutation.exe(b);
+            if(Arrays.equals(a, b)) return true;
         }
         catch (Exception e){
             return false;

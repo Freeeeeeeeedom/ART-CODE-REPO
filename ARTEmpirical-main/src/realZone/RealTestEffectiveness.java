@@ -30,12 +30,13 @@ public class RealTestEffectiveness {
 
 
     static Class<? extends AbstractART> algorithm = FSCS_art.class;
-
+    static String originalName = "Triangle2";
     public static void main(String args[]) throws Exception {
 
 
         String basePath = "..\\effectiveness\\";
-        File filedir = new File(basePath + "RealZone-" + algorithm.getName());
+        String path = basePath + "RealZone-" + algorithm.getName() + "\\" + originalName;
+        File filedir = new File(path);
 
         if(!filedir.exists()){
             filedir.mkdirs();
@@ -48,7 +49,7 @@ public class RealTestEffectiveness {
             for (double area : areas) {
                 DomainBoundary bd = new DomainBoundary(dim, -5000, 5000);
 
-                String s1 = basePath + "RealZone-" + algorithm.getName() + "\\" + dim + "d-Block-" + area + ".txt";
+                String s1 = path  + "\\" + dim + "d-Block-" + area + ".txt";
                 test(bd, area, s1, (Class<AbstractART>) algorithm);
             }
         }
@@ -71,11 +72,12 @@ public class RealTestEffectiveness {
         //FMeasure:检测第一次失败所需的平均测试次数
         int temp = 0;
 
-        String packName = "dt.mutant.Bessj";
+        String packName = "dt.mutant." + originalName;
 
         Constructor<AbstractART> constructor = method.getConstructor(DomainBoundary.class, Double.class);
 
         Set<Class<?>> mutations = ClassUtil.getClasses(packName);
+
         int index = 0;
 
 
@@ -83,18 +85,19 @@ public class RealTestEffectiveness {
             System.out.print(index);
             index++;
 
-            FaultZone fr = new realZone_Bessj(mutation.getConstructor());
+            FaultZone fr = new realZone_Triangle2(mutation.getConstructor(),mutation.getMethods()[0]);
             AbstractART art_block = constructor.newInstance(inputBoundary, Parameters.lp);
+
             ThreadWithCallback callback = new ThreadWithCallback(inputBoundary,art_block,fr);
 
 
             ExecutorService executor = Executors.newFixedThreadPool(2);
 
             Future future = executor.submit(callback::call);
-
+            temp = 0;
             //times for find fault
             try{
-                Object result = future.get(2, TimeUnit.SECONDS);
+                Object result = future.get(10, TimeUnit.SECONDS);
                 temp = (int) result;
             }
             catch (Exception ex){

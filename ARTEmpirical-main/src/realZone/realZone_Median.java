@@ -1,43 +1,38 @@
 package realZone;
-import dt.original.Bessj;
-import faultZone.FaultZone;
-import model.Parameters;
-import model.Testcase;
 
+import dt.original.Gammq;
+import dt.original.Median;
+import faultZone.FaultZone;
+import model.Testcase;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
-import java.util.Arrays;
-import java.util.Calendar;
 
-public class realZone_Bessj extends FaultZone {
+public class realZone_Median extends FaultZone {
+    Median correct = new Median();
+    Median mutation;
 
-    Bessj correct = new Bessj();
-    Bessj mutation;
     Method method;
     Class<?>[] paramters;
     int pcount = 0;
-
-
-    public realZone_Bessj(Constructor constructor, Method m) throws InstantiationException, IllegalAccessException, InvocationTargetException {
-        this.mutation = (Bessj) constructor.newInstance();
+    public realZone_Median(Constructor constructor, Method m) throws InstantiationException, IllegalAccessException, InvocationTargetException {
+        this.mutation = (Median) constructor.newInstance();
         pcount = m.getParameterCount();
         paramters = m.getParameterTypes();
         method = m;
     }
-
     @Override
-    public Boolean isCorrect(Testcase testcase) throws IllegalArgumentException {
+    public Boolean isCorrect(Testcase testcase) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         int x = (int) testcase.getValue(0);
-        double y = testcase.getValue(1);
+        int y = (int) testcase.getValue(1);
+        int[] m = new int[]{x,y};
 //        System.out.println();
 //        System.out.println("x = " + x + " y = " + y);
 //        return false;
         try {
-            double a = correct.bessj(x,y);
-            double b = mutation.bessj(x,y);
+            double a = correct.exe(m);
+            double b = mutation.exe(m);
             if(a==b) return true;
         }
         catch (Exception e){
