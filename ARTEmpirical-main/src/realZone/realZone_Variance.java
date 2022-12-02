@@ -32,8 +32,8 @@ public class realZone_Variance extends FaultZone {
 //        System.out.println("x = " + x + " y = " + y);
 //        return false;
         try {
-            double a = correct.exe(arr);
-            double b = mutation.exe(arr);
+            double a = correct.exe(arr.clone());
+            double b = mutation.exe(arr.clone());
             if(a==b) return true;
         }
         catch (Exception e){
