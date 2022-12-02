@@ -23,7 +23,7 @@ public class SBS_art extends AbstractART {
     int count = 1;
 
     List<List<Testcase>> PT = new ArrayList<>();
-    static Evolution evolution = new HillClimbing();
+    static Evolution evolution = new LocalSpreding();
 
     int PT_size = 5;
 

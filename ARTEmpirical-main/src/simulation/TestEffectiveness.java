@@ -7,6 +7,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
+import hybrid.Divide_Conquer_art;
+import hybrid.EAR_art;
+import pbs.PBS_art;
 import rrt.ORRT_art;
 import faultZone.*;
 import model.*;
@@ -23,13 +26,14 @@ public class TestEffectiveness {
     final static double R = Parameters.R;
 
 
-    static Class<? extends AbstractART> algorithm = SBS_art.class;
+    static Class<? extends AbstractART> algorithm = EAR_art.class;
 
     public static void main(String args[]) throws IOException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 
 
         String basePath = "..\\effectiveness\\";
-        File filedir = new File(basePath+algorithm.getName());
+        String path = basePath+algorithm.getName();
+        File filedir = new File(path);
         if(!filedir.exists()){
             filedir.mkdirs();
         }
@@ -41,9 +45,9 @@ public class TestEffectiveness {
             for (double area : areas) {
                 DomainBoundary bd = new DomainBoundary(dim, -5000, 5000);
 
-                String s1 = basePath + algorithm.getName() + "\\" + dim + "d-Block-" + area + ".txt";
-                String s2 = basePath + algorithm.getName() + "\\" + dim + "d-Strip-" + area + ".txt";
-                String s3 = basePath + algorithm.getName() + "\\" + dim + "d-Point-" + area + ".txt";
+                String s1 = path + "\\" + dim + "d-Block-" + area + ".txt";
+                String s2 = path + "\\" + dim + "d-Strip-" + area + ".txt";
+                String s3 = path + "\\" + dim + "d-Point-" + area + ".txt";
 
                 test(bd, area, 1, s1, algorithm);
                 test(bd, area, 2, s2, algorithm);

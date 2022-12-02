@@ -15,6 +15,8 @@ import java.util.concurrent.TimeUnit;
 
 import faultZone.*;
 import fscs.FSCS_art;
+import hybrid.Divide_Conquer_art;
+import hybrid.EAR_art;
 import model.*;
 import pbs.PBS_art;
 import sbs.SBS_art;
@@ -30,8 +32,8 @@ public class RealTestEffectiveness {
     final static double R = Parameters.R;
 
 
-    static Class<? extends AbstractART> algorithm = FSCS_art.class;
-    static String originalName = "Variance";
+    static Class<? extends AbstractART> algorithm = SBS_art.class;
+    static String originalName = "Bessj";
     public static void main(String args[]) throws Exception {
 
 
@@ -86,7 +88,8 @@ public class RealTestEffectiveness {
             System.out.print(index);
             index++;
 
-            FaultZone fr = new realZone_Variance(mutation.getConstructor(),mutation.getMethods()[0]);
+            FaultZone fr = new realZone_Bessj(mutation.getConstructor(),mutation.getMethods()[0]);
+
             AbstractART art_block = constructor.newInstance(inputBoundary, Parameters.lp);
 
             ThreadWithCallback callback = new ThreadWithCallback(inputBoundary,art_block,fr);
