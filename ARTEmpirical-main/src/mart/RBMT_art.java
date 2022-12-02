@@ -31,7 +31,7 @@ public class RBMT_art extends AbstractART {
 
     public ArrayList<ArrayList<Double>> boarder_vector = new ArrayList<>();
 
-    public RBMT_art(DomainBoundary inputBoundary, double p){
+    public RBMT_art(DomainBoundary inputBoundary, Double p){
         this.inputBoundary = inputBoundary;
         this.p = p;
         this.testBufferPointer = 0;

@@ -6,6 +6,7 @@ import faultZone.FaultZone_Point_Square;
 import fscs.FSCS_art;
 import model.*;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -27,10 +28,10 @@ public class Divide_Conquer_art extends AbstractART {
     //From left to right , up to down
     private ArrayList<ArrayList<Testcase>> SubDomain = new ArrayList<>();
 
-    public Divide_Conquer_art(DomainBoundary inputBoundary, double p, int lambda){
-        this.p = p;
+    public Divide_Conquer_art(DomainBoundary inputBoundary, Double p){
         this.inputBoundary = inputBoundary;
-        this.lambda = lambda;
+        this.p = p;
+        this.lambda = 10;
         for(int i = 0; i < dn * dn; i++){
             ArrayList<Testcase> tmp = new ArrayList<>();
             SubDomain.add(tmp);
@@ -114,7 +115,7 @@ public class Divide_Conquer_art extends AbstractART {
 
         for (int i = 1; i <= times; i++) {
             FaultZone fz=new FaultZone_Point_Square(bd, failrate);
-            Divide_Conquer_art divide_conquer_art = new Divide_Conquer_art(bd, p, 10);
+            Divide_Conquer_art divide_conquer_art = new Divide_Conquer_art(bd, p);
 
             temp=divide_conquer_art.run(fz);
             result.add(temp);

@@ -7,6 +7,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
+import hybrid.Divide_Conquer_art;
+import hybrid.EAR_art;
+import mart.Mirror_art;
 import rrt.ORRT_art;
 import faultZone.*;
 import model.*;
@@ -23,7 +26,7 @@ public class TestEffectiveness {
     final static double R = Parameters.R;
 
 
-    static Class<? extends AbstractART> algorithm = SBS_art.class;
+    static Class<? extends AbstractART> algorithm = Mirror_art.class;
 
     public static void main(String args[]) throws IOException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 
@@ -62,7 +65,7 @@ public class TestEffectiveness {
      * @param method    The method to generate test cases
      */
 
-    public static void test(DomainBoundary inputBoundary, double failrate, int faultZoneFlag, String filePath, Class method) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
+    public static void test(DomainBoundary inputBoundary, double failrate, int faultZoneFlag, String filePath, Class method) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException, IOException {
         int dimension = inputBoundary.dimensionOfInputDomain();
 
         long sumsRRT = 0;

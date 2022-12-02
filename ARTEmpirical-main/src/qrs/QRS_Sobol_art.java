@@ -32,7 +32,7 @@ public class QRS_Sobol_art extends AbstractART {
     public ArrayList<ArrayList<Integer>> C = new ArrayList<>(); //Generator Matrix
     public ArrayList<Integer> C_Size = new ArrayList<>();
 
-    public QRS_Sobol_art(DomainBoundary inputBoundary, double p) throws IOException {
+    public QRS_Sobol_art(DomainBoundary inputBoundary, Double p) throws IOException {
         setC();
         this.inputBoundary = inputBoundary;
         this.p = p;
