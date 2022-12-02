@@ -8,14 +8,16 @@ import java.util.List;
 import java.util.Random;
 
 public class GeneticAlgorithm implements Evolution{
+    //遗传算法
 
     int size = 4;
     double standard = 2000.00;
+    //cross操作
     public List<Testcase> cross(List<Testcase> T1, List<Testcase> L2){
         L2.forEach(T1::remove);
         return T1;
     }
-
+    //变异操作
     public List<Testcase> mutation(List<Testcase> T){
         T.forEach(t->{
             if(new Random().nextDouble()<0.1){
@@ -25,6 +27,7 @@ public class GeneticAlgorithm implements Evolution{
         });
         return T;
     }
+    //PT生成
 
     public List<List<Testcase>> PT_generate(int PT_size,List<Testcase> candidates){
         List<List<Testcase>> PT = new ArrayList<>();
@@ -35,6 +38,7 @@ public class GeneticAlgorithm implements Evolution{
         }
         return PT;
     }
+    //演化函数
     @Override
     public List<Testcase> evolution(List<List<Testcase>> PT, SBS_art sbs) {
         List<List<Testcase>> list = new ArrayList<>();

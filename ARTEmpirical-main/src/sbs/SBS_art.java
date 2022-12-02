@@ -23,7 +23,8 @@ public class SBS_art extends AbstractART {
     int count = 1;
 
     List<List<Testcase>> PT = new ArrayList<>();
-    static Evolution evolution = new HillClimbing();
+    //strategy of evolution
+    static Evolution evolution = new SimulatedRepulsion();
 
     int PT_size = 5;
 
@@ -38,7 +39,7 @@ public class SBS_art extends AbstractART {
     public SBS_art(){
 
     }
-
+    //Fitness Function
     public double Fitness(List<Testcase> T){
         double Mindist = Double.MAX_VALUE;
 
