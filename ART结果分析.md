@@ -128,6 +128,12 @@ FailureRate=0.01
 
 ![BubbleSort-0.01](./assets/BubbleSort-0.01.png)
 
+### Grammq
+
+由于设备性能和时间所限，我们在每种方法里挑选了最具代表性的实现
+
+![Grammq-0.01](./assets/Grammq-0.01.png)
+
 ## 测试数据
 
 由于数据占据篇幅过大，放在最后
