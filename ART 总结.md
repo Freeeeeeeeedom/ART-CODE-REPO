@@ -92,7 +92,7 @@ FSCS算法的逻辑是优先选择离未触发缺陷的测试用例更远的测�
 
 伪代码：
 
-![](./assets/image-20221128125554778.png)
+![](https://hurry11.oss-cn-nanjing.aliyuncs.com/img/image-20221128125554778.png)
 
 接口介绍
 
@@ -128,7 +128,7 @@ ORRT的底层逻辑和FSCS相似，同样认为错误输入相对集中，因此
 
 伪代码：
 
-![image-20221202230242403](./assets/image-20221202230242403.png)
+![image-20221202230242403](https://hurry11.oss-cn-nanjing.aliyuncs.com/img/image-20221202230242403.png)
 
 #### **Partitioning-schema component**
 
@@ -201,7 +201,7 @@ ORRT的底层逻辑和FSCS相似，同样认为错误输入相对集中，因此
 
 伪代码：
 
-![](./assets/image-20221202231208912.png)
+![](https://hurry11.oss-cn-nanjing.aliyuncs.com/img/image-20221202231208912.png)
 
 根据Quasi-random-sequence-selection component选择的随机序列的不同，我们提供了两种算法实现。
 
@@ -247,7 +247,7 @@ Search-Based Strategy
 
 伪代码：
 
-![image-20221202230308539](./assets/image-20221202230308539.png)
+![image-20221202230308539](https://hurry11.oss-cn-nanjing.aliyuncs.com/img/image-20221202230308539.png)
 
 #### 5.1 SBS-GeneticAlgorithm
 
@@ -420,7 +420,7 @@ TPBS即Test-Profile-Based Strategy
 1. 不知道怎么模拟概率
 2. 对于执行多个未成功用例时其他测试用例的概率分布
 
-![image-20221202215319521](./assets/image-20221202215319521.png)
+![image-20221202215319521](https://hurry11.oss-cn-nanjing.aliyuncs.com/img/image-20221202215319521.png)
 
 ### 2. backpack数值程序
 
@@ -440,4 +440,4 @@ TPBS即Test-Profile-Based Strategy
 
 伪代码：
 
-![image-20221202221554225](./assets/image-20221202221554225.png)
+![image-20221202221554225](https://hurry11.oss-cn-nanjing.aliyuncs.com/img/image-20221202221554225.png)
