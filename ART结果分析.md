@@ -352,3 +352,59 @@
 | mart_rbmt      | 0.02  | 4.66358 |
 | mart_rbmt      | 0.005 | 0.5481  |
 | mart_rbmt      | 0.01  | 1.682   |
+
+### 各算法的效率
+
+考虑到17种算法的测试结果混在一起过于复杂，我们单独对每个算法测试其在不同错误域上的表现。
+
+#### FSCS
+
+![Line-20221203-FSCS-Sim](./assets/Line-20221203-FSCS-Sim.png)
+
+#### Divide_Conquer
+
+![Line-20221203-Con-Sim](./assets/Line-20221203-Con-Sim.png)
+
+#### eAR
+
+![Line-20221203-eAR-Sim](./assets/Line-20221203-eAR-Sim.png)
+
+#### mart
+
+![Line-20221203-mart-Sim](./assets/Line-20221203-mart-Sim.png)
+
+#### rbmt
+
+![Line-20221203-rbmt-Sim](./assets/Line-20221203-rbmt-Sim.png)
+
+#### PBS.FPG
+
+![Line-20221203-fpg-Sim](./assets/Line-20221203-fpg-Sim.png)
+
+#### PBS.MS
+
+![Line-20221203-ms-Sim](./assets/Line-20221203-ms-Sim.png)
+
+#### PBS.NTCT
+
+![Line-20221203-ntct-Sim](./assets/Line-20221203-ntct-Sim.png)
+
+#### PBS.Prop
+
+![Line-20221203-prop-Sim](./assets/Line-20221203-prop-Sim.png)
+
+#### QRS.Halton
+
+![Line-20221203-halton-Sim](./assets/Line-20221203-halton-Sim.png)
+
+#### QRS.Sobol
+
+![Line-20221203-sobol-Sim](./assets/Line-20221203-sobol-Sim.png)
+
+#### ORRT
+
+![Line-20221203-orrt-Sim](./assets/Line-20221203-orrt-Sim.png)
+
+#### SBS.GA
+
+![Line-20221203-ga-Sim](./assets/Line-20221203-ga-Sim.png)
