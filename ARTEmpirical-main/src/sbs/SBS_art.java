@@ -24,7 +24,7 @@ public class SBS_art extends AbstractART {
 
     List<List<Testcase>> PT = new ArrayList<>();
     //strategy of evolution
-    static Evolution evolution = new SimulatedRepulsion();
+    static Evolution evolution = new SimulatedAnnealing();
 
     int PT_size = 5;
 

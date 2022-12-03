@@ -35,11 +35,11 @@ public class RealTestEffectiveness {
     final static double R = Parameters.R;
 
 
-    static Class<? extends AbstractART> algorithm = EAR_art.class;
+    static Class<? extends AbstractART> algorithm = QRS_Sobol_art.class;
     static String originalName = "";
     public static void main(String args[]) throws Exception {
 
-            int id = 10;
+            int id = 2;
                 switch (id) {
                     case 1 -> originalName = "Bessj";
                     case 2 -> originalName = "BubbleSort";
@@ -55,7 +55,7 @@ public class RealTestEffectiveness {
                 }
 
                 String basePath = "..\\effectiveness\\";
-                String path = basePath + "RealZone-" + algorithm.getName() + "\\" + originalName;
+                String path = basePath + "RealZone-" + algorithm.getName()  + "\\" + originalName;
                 File filedir = new File(path);
 
                 if (!filedir.exists()) {

@@ -25,7 +25,7 @@ public class PBS_art extends AbstractART {
     public DomainBoundary inputBoundary = new DomainBoundary();
     int count = 1;
 
-        SubDomainSelection selectionStrategy = new NoTestCaseInTarget();
+        SubDomainSelection selectionStrategy = new Proportional();
 
     public List<List<Testcase>> SubDomains = new ArrayList<>();
     int partitions = 10;
