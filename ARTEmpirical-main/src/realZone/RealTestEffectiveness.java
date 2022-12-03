@@ -35,11 +35,11 @@ public class RealTestEffectiveness {
     final static double R = Parameters.R;
 
 
-    static Class<? extends AbstractART> algorithm = EAR_art.class;
+    static Class<? extends AbstractART> algorithm = RBMT_art.class;
     static String originalName = "";
     public static void main(String args[]) throws Exception {
 
-            int id = 3;
+            int id = 11;
                 switch (id) {
                     case 1 -> originalName = "Bessj";
                     case 2 -> originalName = "BubbleSort";
@@ -61,7 +61,7 @@ public class RealTestEffectiveness {
                 if (!filedir.exists()) {
                     filedir.mkdirs();
                 }
-                double[] areas = new double[]{0.01d}; // failure rate
+                double[] areas = new double[]{0.01}; // failure rate
 
                 int[] dimensions = new int[]{2};  // dimension of inputdomain
 
