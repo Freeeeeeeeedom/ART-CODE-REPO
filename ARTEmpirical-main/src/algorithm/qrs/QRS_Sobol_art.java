@@ -1,4 +1,4 @@
-package qrs;
+package algorithm.qrs;
 
 import faultZone.FaultZone;
 import faultZone.FaultZone_Point_Square;

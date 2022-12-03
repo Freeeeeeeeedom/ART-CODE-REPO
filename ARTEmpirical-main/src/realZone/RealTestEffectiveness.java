@@ -12,17 +12,11 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import faultZone.*;
-import fscs.FSCS_art;
-import hybrid.Divide_Conquer_art;
-import hybrid.EAR_art;
-import mart.Mirror_art;
-import mart.RBMT_art;
+import algorithm.fscs.FSCS_art;
+import algorithm.mart.RBMT_art;
 import model.*;
-import pbs.PBS_art;
-import qrs.QRS_Halton_art;
-import qrs.QRS_Sobol_art;
-import rrt.ORRT_art;
-import sbs.SBS_art;
+import algorithm.pbs.PBS_art;
+import algorithm.sbs.SBS_art;
 
 
 public class RealTestEffectiveness {

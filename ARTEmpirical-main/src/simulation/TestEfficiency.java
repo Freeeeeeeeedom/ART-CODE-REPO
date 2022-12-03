@@ -7,19 +7,12 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
-import fscs.FSCS_art;
-import hybrid.Divide_Conquer_art;
-import hybrid.EAR_art;
-import mart.Mirror_art;
-import mart.RBMT_art;
+import algorithm.fscs.FSCS_art;
 import model.AbstractART;
 import model.DomainBoundary;
 import model.Parameters;
-import pbs.PBS_art;
-import qrs.QRS_Halton_art;
-import qrs.QRS_Sobol_art;
-import rrt.ORRT_art;
-import sbs.SBS_art;
+import algorithm.pbs.PBS_art;
+import algorithm.sbs.SBS_art;
 
 public class TestEfficiency {
 

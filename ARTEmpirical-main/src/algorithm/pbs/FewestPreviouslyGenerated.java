@@ -1,4 +1,4 @@
-package pbs;
+package algorithm.pbs;
 
 import model.Testcase;
 

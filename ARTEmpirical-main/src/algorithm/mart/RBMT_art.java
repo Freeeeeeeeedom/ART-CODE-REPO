@@ -1,6 +1,5 @@
-package mart;
+package algorithm.mart;
 
-import com.sun.source.doctree.TextTree;
 import faultZone.FaultZone;
 import faultZone.FaultZone_Point_Square;
 import model.AbstractART;
