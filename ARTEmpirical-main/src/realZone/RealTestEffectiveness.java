@@ -35,11 +35,11 @@ public class RealTestEffectiveness {
     final static double R = Parameters.R;
 
 
-    static Class<? extends AbstractART> algorithm = QRS_Sobol_art.class;
+    static Class<? extends AbstractART> algorithm = EAR_art.class;
     static String originalName = "";
     public static void main(String args[]) throws Exception {
 
-            int id = 2;
+            int id = 3;
                 switch (id) {
                     case 1 -> originalName = "Bessj";
                     case 2 -> originalName = "BubbleSort";
