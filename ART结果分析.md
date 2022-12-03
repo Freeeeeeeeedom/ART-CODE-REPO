@@ -119,7 +119,7 @@
 
 ### Effectiveness 测试效率
 
-在测试效率的图表中，x轴是设置的输入域中的错误覆盖率，y轴是Fart/Frt，即效率
+在测试效率的图表中，x轴是设置的输入域中的错误覆盖率，y轴是F-Measure
 
 #### Block
 
@@ -361,29 +361,43 @@
 
 ![Line-20221203-FSCS-Sim](./assets/Line-20221203-FSCS-Sim.png)
 
+可以看到在不同Failrate中FSCS的F-Measure表现差异不大，同时在块状分布的错误域中表现较好，在点状分布的错误分布中表现较差。
+
 #### Divide_Conquer
 
 ![Line-20221203-Con-Sim](./assets/Line-20221203-Con-Sim.png)
+
+Divide_Conquer作为复合型方法，结合STFCS + PBS，在Failerate较大的情况下，不同分布中的测试效果相近，相对来说比较适合于大部分错误输出的生成。
 
 #### eAR
 
 ![Line-20221203-eAR-Sim](./assets/Line-20221203-eAR-Sim.png)
 
+eAR算法十分依赖FailureRate，在block和point分布类型中，更适合用于检测错误率较高的数值程序。
+
 #### mart
 
 ![Line-20221203-mart-Sim](./assets/Line-20221203-mart-Sim.png)
+
+MART在block和strip这样连续分布的情况中有着不错的表现，且相对稳定，但是不适用于point分布。
 
 #### rbmt
 
 ![Line-20221203-rbmt-Sim](./assets/Line-20221203-rbmt-Sim.png)
 
+ rbmt不知道是不是实现的算法与理论的数学模型不太符合，最终的效果比较差...且波动大，不适合使用
+
 #### PBS.FPG
 
 ![Line-20221203-fpg-Sim](./assets/Line-20221203-fpg-Sim.png)
 
+FPG算法优先选择与已执行输入差异更大的输入集，最终表现也比较均匀（根据PBS的几个算法总结，似乎这是PBS的特点），适合各种情况。
+
 #### PBS.MS
 
 ![Line-20221203-ms-Sim](./assets/Line-20221203-ms-Sim.png)
+
+MS的算法在不同领域的效果基本接近，且效果不错。
 
 #### PBS.NTCT
 
@@ -397,14 +411,22 @@
 
 ![Line-20221203-halton-Sim](./assets/Line-20221203-halton-Sim.png)
 
+Halton序列生成的伪随机数的表现基本类似，毕竟Halton的原理就是生成更加均匀的测试输入，因此最终效果符合对算法的认知。
+
 #### QRS.Sobol
 
 ![Line-20221203-sobol-Sim](./assets/Line-20221203-sobol-Sim.png)
+
+Sobol序列生成的随机输入效果在不同分布下有着显著不同，尤其是在block下效果尤其好，这其实不太符合我们对Sobol序列的认知，但是Sobol序列的均匀性和生成矩阵密切相关，有这样的效果应该和使用的生成矩阵的文件有关。
 
 #### ORRT
 
 ![Line-20221203-orrt-Sim](./assets/Line-20221203-orrt-Sim.png)
 
+ORRT通过在正确的输入周围建立隔离域，可以第一时间筛选出大规模的差异度较大的测试用例集，因此在block中表现很好，者和预期相符和。
+
 #### SBS.GA
 
 ![Line-20221203-ga-Sim](./assets/Line-20221203-ga-Sim.png)
+
+基于搜索的算法表现和使用的算法密切相关。这里使用了遗传算法，可以看到与错误用例数的大小密切相关，在不同的FailureRate下表现各有不同。
