@@ -122,6 +122,12 @@ FailureRate=0.01
 
 ![Bessj-0.01](./assets/Bessj-0.01.png)
 
+### BubbleSort
+
+这里运行的时候堆炸了，每个程序的进程都缩短了很多，因此数据很诡异
+
+![BubbleSort-0.01](./assets/BubbleSort-0.01.png)
+
 ## 测试数据
 
 由于数据占据篇幅过大，放在最后
