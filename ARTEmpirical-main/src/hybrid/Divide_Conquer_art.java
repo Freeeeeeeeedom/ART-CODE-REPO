@@ -31,7 +31,8 @@ public class Divide_Conquer_art extends AbstractART {
     public Divide_Conquer_art(DomainBoundary inputBoundary, Double p){
         this.inputBoundary = inputBoundary;
         this.p = p;
-        this.lambda = 10;
+        this.lambda = 10; //set the threshold,choose FCSC or PBS
+        //init the SubDomain
         for(int i = 0; i < dn * dn; i++){
             ArrayList<Testcase> tmp = new ArrayList<>();
             SubDomain.add(tmp);
@@ -42,7 +43,7 @@ public class Divide_Conquer_art extends AbstractART {
     public Testcase Best_candidate() {
         this.Candidate.clear();
 
-        //STFCS
+        //STFCS, From FSCS_art
         if(this.total.size() < lambda){
             this.Candidate = Testcase.generateCandates(10, inputBoundary.getList());
             Testcase p = null;
@@ -128,6 +129,8 @@ public class Divide_Conquer_art extends AbstractART {
                 + sums / (double) times * failrate);// 平均每次使用的测试用例数
 
     }
+
+    //from FSCS_art.testEfficiency
     @Override
     public void testEfficiency(int pointNum) {
         Testcase testcase = new Testcase(inputBoundary);

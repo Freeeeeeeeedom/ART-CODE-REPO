@@ -34,8 +34,6 @@ public class EAR_art extends AbstractART {
 
     public double p;
 
-    public double standard = 2000.00;
-
     List<List<Testcase>> PT = new ArrayList<>();
     public ArrayList<ArrayList<Integer>> C = new ArrayList<>(); //Generator Matrix
     public ArrayList<Integer> C_Size = new ArrayList<>();
@@ -50,6 +48,7 @@ public class EAR_art extends AbstractART {
         this.p = p;
     }
 
+    //read file to init C
     public void setC() throws IOException {
         String path = "ARTEmpirical-main/new-joe-kuo-7.21201";
         File file = new File(path);
@@ -82,7 +81,8 @@ public class EAR_art extends AbstractART {
         //Generate Testcases from Sobol Sequence
         generateSobol(10);
 
-        List<Testcase> SelectedT = new ArrayList<>();
+        //SBS.GA
+        List<Testcase> SelectedT;
 
         GeneticAlgorithm ga = new GeneticAlgorithm();
         PT = ga.PT_generate(PT_size,Candidate);
@@ -93,6 +93,7 @@ public class EAR_art extends AbstractART {
         return SelectedT.get(0);
     }
 
+    //from QRS_Sobol_art
     public void generateSobol(int num){
         ArrayList Candidate = new ArrayList<>();
         for (int j = 0; j < num; j++) {
@@ -123,9 +124,9 @@ public class EAR_art extends AbstractART {
         return r / (double) (1 << k); // 除以2^M,移到小数点右边
     }
 
+    //from SBS_art.Fitness
     public double Fitness(List<Testcase> T){
         double Mindist = Double.MAX_VALUE;
-
         if(T.size()==1) return Double.MAX_VALUE;
         for(int i=0;i<T.size();i++){
             for(int j=i+1;j<T.size();j++){

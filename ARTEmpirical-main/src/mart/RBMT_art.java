@@ -27,7 +27,7 @@ public class RBMT_art extends AbstractART {
 
     public ArrayList<Testcase> mps = new ArrayList<>(); //Source Domains
     public ArrayList<Testcase> testBuffer = new ArrayList<>(); //Virtual Domains
-    private int testBufferPointer;
+    private int testBufferPointer; //point of testBuffer
 
     public ArrayList<ArrayList<Double>> boarder_vector = new ArrayList<>();
 
@@ -55,6 +55,7 @@ public class RBMT_art extends AbstractART {
             return testcase;
         }
 
+        //add mirror testcases to subDomain
         Testcase testcase;
         if(testBuffer.size() == 0){
             testcase = this.mps.get(0);
@@ -73,6 +74,7 @@ public class RBMT_art extends AbstractART {
             testBuffer.add(testcase);
         }
 
+        //read the point of testBuffer
         testcase = new Testcase();
         testcase.addValue(this.testBuffer.get(testBufferPointer).getValue(0) + this.boarder_vector.get(testBufferPointer).get(0));
         testcase.addValue(this.testBuffer.get(testBufferPointer).getValue(1) + this.boarder_vector.get(testBufferPointer).get(1));
