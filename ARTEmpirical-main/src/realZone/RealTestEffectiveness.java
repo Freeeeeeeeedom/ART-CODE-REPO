@@ -4,9 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -17,8 +15,13 @@ import faultZone.*;
 import fscs.FSCS_art;
 import hybrid.Divide_Conquer_art;
 import hybrid.EAR_art;
+import mart.Mirror_art;
+import mart.RBMT_art;
 import model.*;
 import pbs.PBS_art;
+import qrs.QRS_Halton_art;
+import qrs.QRS_Sobol_art;
+import rrt.ORRT_art;
 import sbs.SBS_art;
 
 
@@ -32,30 +35,45 @@ public class RealTestEffectiveness {
     final static double R = Parameters.R;
 
 
-    static Class<? extends AbstractART> algorithm = SBS_art.class;
-    static String originalName = "Bessj";
+    static Class<? extends AbstractART> algorithm = EAR_art.class;
+    static String originalName = "";
     public static void main(String args[]) throws Exception {
 
+            for(int id=1;id<=11;id++) {
+                switch (id) {
+                    case 1 -> originalName = "Bessj";
+                    case 2 -> originalName = "BubbleSort";
+                    case 3 -> originalName = "Encoder";
+                    case 4 -> originalName = "Expint";
+                    case 5 -> originalName = "Fisher";
+                    case 6 -> originalName = "Gammq";
+                    case 7 -> originalName = "Median";
+                    case 8 -> originalName = "Remainder";
+                    case 9 -> originalName = "Triangle";
+                    case 10 -> originalName = "Triangle2";
+                    case 11 -> originalName = "Variance";
+                }
 
-        String basePath = "..\\effectiveness\\";
-        String path = basePath + "RealZone-" + algorithm.getName() + "\\" + originalName;
-        File filedir = new File(path);
+                String basePath = "..\\effectiveness\\";
+                String path = basePath + "RealZone-" + algorithm.getName() + "\\" + originalName;
+                File filedir = new File(path);
 
-        if(!filedir.exists()){
-            filedir.mkdirs();
-        }
-        double[] areas = new double[]{0.01, 0.005, 0.002, 0.001}; // failure rate
+                if (!filedir.exists()) {
+                    filedir.mkdirs();
+                }
+                double[] areas = new double[]{0.01d}; // failure rate
 
-        int[] dimensions = new int[]{2};  // dimension of inputdomain
+                int[] dimensions = new int[]{2};  // dimension of inputdomain
 
-        for (int dim : dimensions) {
-            for (double area : areas) {
-                DomainBoundary bd = new DomainBoundary(dim, -5000, 5000);
+                for (int dim : dimensions) {
+                    for (double area : areas) {
+                        DomainBoundary bd = new DomainBoundary(dim, -5000, 5000);
 
-                String s1 = path  + "\\" + dim + "d-Block-" + area + ".txt";
-                test(bd, area, s1, (Class<AbstractART>) algorithm);
+                        String s1 = path + "\\" + dim + "d-Block-" + area + ".txt";
+                        test(bd, area, s1, (Class<AbstractART>) algorithm, id);
+                    }
+                }
             }
-        }
         System.exit(0);
     }
 
@@ -67,7 +85,7 @@ public class RealTestEffectiveness {
      * @param method    The method to generate test cases
      */
 
-    public static void test(DomainBoundary inputBoundary, double failrate, String filePath, Class<AbstractART> method) throws Exception {
+    public static void test(DomainBoundary inputBoundary, double failrate, String filePath, Class<AbstractART> method,int id) throws Exception {
         int dimension = inputBoundary.dimensionOfInputDomain();
 
         long sumsRRT = 0;
@@ -85,8 +103,20 @@ public class RealTestEffectiveness {
             System.out.print(index);
             index++;
 
-            FaultZone fr = new realZone_Bessj(mutation.getConstructor(),mutation.getMethods()[0]);
-
+            FaultZone fr = null;
+            switch (id){
+                case 1: fr = new realZone_Bessj(mutation.getConstructor(),mutation.getMethods()[0]); break;
+                case 2: fr = new realZone_BubbleSort(mutation.getConstructor(),mutation.getMethods()[0]);break;
+                case 3: fr = new realZone_Encoder(mutation.getConstructor(),mutation.getMethods()[0]);break;
+                case 4: fr = new realZone_Expint(mutation.getConstructor(),mutation.getMethods()[0]);break;
+                case 5: fr = new realZone_Fisher(mutation.getConstructor(),mutation.getMethods()[0]);break;
+                case 6: fr = new realZone_Gammq(mutation.getConstructor(),mutation.getMethods()[0]);break;
+                case 7: fr = new realZone_Median(mutation.getConstructor(),mutation.getMethods()[0]);break;
+                case 8: fr = new realZone_Remainder(mutation.getConstructor(),mutation.getMethods()[0]);break;
+                case 9: fr = new realZone_Triangle(mutation.getConstructor(),mutation.getMethods()[0]);break;
+                case 10: fr = new realZone_Triangle2(mutation.getConstructor(),mutation.getMethods()[0]);break;
+                case 11: fr = new realZone_Variance(mutation.getConstructor(),mutation.getMethods()[0]);break;
+            }
             AbstractART art_block = constructor.newInstance(inputBoundary, Parameters.lp);
 
             ThreadWithCallback callback = new ThreadWithCallback(inputBoundary,art_block,fr);
@@ -94,7 +124,7 @@ public class RealTestEffectiveness {
 
             Future future = executor.submit(callback::call);
             try{
-                Object result = future.get(2, TimeUnit.SECONDS);
+                Object result = future.get(1,TimeUnit.SECONDS);
                 temp = (int) result;
             }
             catch (Exception ex){
