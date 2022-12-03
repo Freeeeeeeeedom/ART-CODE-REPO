@@ -54,6 +54,7 @@ public class ORRT_art extends AbstractART {
         if(total.size() == 0)
             return Candidate.get(new Random().nextInt(Candidate.size()));
 
+        //set execution zone and select testcase outside zone
         exclusionZone = Math.pow(inputBoundary.sizeOfInputDomain() * targetExclusion / (total.size() * Math.PI), 0.5);
         for(int i = 0; i < Candidate.size(); i++){
             boolean outExclusion = true;
