@@ -1,12 +1,10 @@
-package hybrid;
+package algorithm.hybrid;
 
 import faultZone.FaultZone;
-import faultZone.FaultZone_Block;
 import faultZone.FaultZone_Point_Square;
-import fscs.FSCS_art;
+import algorithm.fscs.FSCS_art;
 import model.*;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Random;

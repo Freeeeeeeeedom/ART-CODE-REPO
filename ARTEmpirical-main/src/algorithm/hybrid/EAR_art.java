@@ -1,4 +1,4 @@
-package hybrid;
+package algorithm.hybrid;
 
 import faultZone.FaultZone;
 import faultZone.FaultZone_Point_Square;
@@ -6,7 +6,7 @@ import model.AbstractART;
 import model.DomainBoundary;
 import model.Parameters;
 import model.Testcase;
-import sbs.*;
+import algorithm.sbs.*;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -38,7 +38,7 @@ public class EAR_art extends AbstractART {
     public ArrayList<ArrayList<Integer>> C = new ArrayList<>(); //Generator Matrix
     public ArrayList<Integer> C_Size = new ArrayList<>();
 
-    static sbs.Evolution evolution;
+    static algorithm.sbs.Evolution evolution;
 
     int PT_size = 5;
 

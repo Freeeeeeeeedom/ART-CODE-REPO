@@ -1,4 +1,4 @@
-package mart;
+package algorithm.mart;
 
 import faultZone.FaultZone;
 import faultZone.FaultZone_Point_Square;

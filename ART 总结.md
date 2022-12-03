@@ -39,13 +39,13 @@ stored algorithms included:
 
 | Class  | Intro                                                        |
 | ------ | ------------------------------------------------------------ |
-| fscs   | The basic method of ART generates several candidates, select the furthest one from executed testcases, using Euclidean Distance, including FSCS_art |
-| hybrid | Combine several methods together to generate and select testcases , including Divide_Conquer_art, EAR_qrt |
-| mart   | Patition the input boundary to a source domain and several mirror partition. include Mirror_art,  RBMT_art |
-| pbs    | Divides the input domain into a number of subdomins, choosing one as the location within which to generate the next test case |
-| qrs    | Using Low Discrepancy Sequence to generate a more uniform distribution including QRS_Halton_art, QRS_Sobol_art |
-| rrt    | After selecting a testcase, stop selecting testcases around executed include ORRT |
-| sbs    | Uses search-based algorithms to achieve the even-spreading of test cases over the input domain |
+| algorithm.fscs   | The basic method of ART generates several candidates, select the furthest one from executed testcases, using Euclidean Distance, including FSCS_art |
+| algorithm.hybrid | Combine several methods together to generate and select testcases , including Divide_Conquer_art, EAR_qrt |
+| algorithm.mart   | Patition the input boundary to a source domain and several mirror partition. include Mirror_art,  RBMT_art |
+| algorithm.pbs    | Divides the input domain into a number of subdomins, choosing one as the location within which to generate the next test case |
+| algorithm.qrs    | Using Low Discrepancy Sequence to generate a more uniform distribution including QRS_Halton_art, QRS_Sobol_art |
+| algorithm.rrt    | After selecting a testcase, stop selecting testcases around executed include ORRT |
+| algorithm.sbs    | Uses search-based algorithms to achieve the even-spreading of test cases over the input domain |
 
 ### **src/model**
 

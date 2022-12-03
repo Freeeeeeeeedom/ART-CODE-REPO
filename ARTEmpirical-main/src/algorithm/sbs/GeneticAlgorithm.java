@@ -1,6 +1,6 @@
-package sbs;
+package algorithm.sbs;
 
-import hybrid.EAR_art;
+import algorithm.hybrid.EAR_art;
 import model.Testcase;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package sbs;
+package algorithm.sbs;
 
 import model.Testcase;
 

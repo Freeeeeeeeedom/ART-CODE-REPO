@@ -1,4 +1,4 @@
-package rrt;
+package algorithm.rrt;
 
 import faultZone.FaultZone;
 import faultZone.FaultZone_Point_Square;
