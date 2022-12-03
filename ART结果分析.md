@@ -134,6 +134,10 @@ FailureRate=0.01
 
 ![Grammq-0.01](./assets/Grammq-0.01.png)
 
+### Fisher
+
+![Fisher-0.01](./assets/Fisher-0.01.png)
+
 ## 测试数据
 
 由于数据占据篇幅过大，放在最后
