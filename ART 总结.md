@@ -164,6 +164,22 @@ ORRT的底层逻辑和FSCS相似，同样认为错误输入相对集中，因此
 
 具体实现，由于PBS的四种实现的主题逻辑相似，我们采用策略模式，通过添加成员变量strategy，四种stategy通过实现共同的接口来实现代码的复用
 
+#### 3.1 PBS-MaximumSize
+
+对所有测试用例集分区后，从中选取出Size最大的TestCaseSet Ti，并且 Ti $\cap$ Total = $\empty$
+
+#### 3.2 PBS-NoTestCaseInTarget
+
+这个算法不仅需要被选的用例集与total的交集为空，并且他的邻域与total的交集也为空
+
+#### 3.3 PBS-FewestPreviouslyGenerated
+
+对于生成的测试用例集$T_0,T_1,...T_m$,选出$|T_i \cap Total|$最小的用例集
+
+#### 3.4 PBS-Proportional
+
+设定两个动态变化的概率，p,q分别表示TestCase落在中心和边缘的概率，然后选取用例集后根据p/q的值来判断是否需要继续生成新的测试集
+
 | public PBS_art(DomainBoundary inputBoundary, Double p)       | 构造函数                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | public Partitioning()                                        | 分区算法，我们这里根据不同的子块选择设定了不同的分区算法     |
@@ -232,6 +248,26 @@ Search-Based Strategy
 伪代码：
 
 ![image-20221202230308539](./assets/image-20221202230308539.png)
+
+#### 5.1 SBS-GeneticAlgorithm
+
+遗传算法，使用一组用例集，通过crooss，mutation等操作来生成新的用例集，这里我们参考Bueno等人的方法，是通过选取一个随机概率来决定进行何种操作。
+
+#### 5.2 SBS-HillClimbing
+
+使用单个的用例集而不是一组用力集，爬山算法的基本思想就是根据Fitness函数计算测试集的Fitness值，随机选取初始位置和爬山方向，然后寻找局部Fitness的局部最大值后返回
+
+#### 5.3 SBS-LocalSpreding
+
+和爬山算法和退火算法类似，LS也只使用一个单一的初始测试集T。LS依次移动允许移动的每个点tc∈T，获取离Tc最近的两个用例集Ti和Tj，然后根据Ti-Tj的结果来决定Tc的移动方向和数值的改变。当用例集不再满足可以选取Ti和Tj之后，我们返回当前的用例集，即我们需要的结果。
+
+#### 5.4 SBS-SimulatedAnnealing
+
+和爬山算法类似，退火算法也使用一个单个的用例集，在每次迭代的过程中，SA构造一个新的用例集（通过随机选取T中的变量，并且变异得到），同样的如果新的用例集的Fitness值大于原集，那么继续迭代，否则选取当前用例集
+
+#### 5.5 SBS-SimulatedRepulsion
+
+和遗传算法类似，但是生成新集合的函数变为![](https://hurry11.oss-cn-nanjing.aliyuncs.com/img/image-20221203101056786.png)
 
 | public SBS_art(DomainBoundary inputBoundary, Double p) | 构造函数                                                     |
 | ------------------------------------------------------ | ------------------------------------------------------------ |

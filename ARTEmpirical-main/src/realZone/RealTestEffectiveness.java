@@ -39,7 +39,7 @@ public class RealTestEffectiveness {
     static String originalName = "";
     public static void main(String args[]) throws Exception {
 
-            for(int id=1;id<=11;id++) {
+            int id = 10;
                 switch (id) {
                     case 1 -> originalName = "Bessj";
                     case 2 -> originalName = "BubbleSort";
@@ -73,7 +73,7 @@ public class RealTestEffectiveness {
                         test(bd, area, s1, (Class<AbstractART>) algorithm, id);
                     }
                 }
-            }
+
         System.exit(0);
     }
 
@@ -103,31 +103,31 @@ public class RealTestEffectiveness {
             System.out.print(index);
             index++;
 
-            FaultZone fr = null;
-            switch (id){
-                case 1: fr = new realZone_Bessj(mutation.getConstructor(),mutation.getMethods()[0]); break;
-                case 2: fr = new realZone_BubbleSort(mutation.getConstructor(),mutation.getMethods()[0]);break;
-                case 3: fr = new realZone_Encoder(mutation.getConstructor(),mutation.getMethods()[0]);break;
-                case 4: fr = new realZone_Expint(mutation.getConstructor(),mutation.getMethods()[0]);break;
-                case 5: fr = new realZone_Fisher(mutation.getConstructor(),mutation.getMethods()[0]);break;
-                case 6: fr = new realZone_Gammq(mutation.getConstructor(),mutation.getMethods()[0]);break;
-                case 7: fr = new realZone_Median(mutation.getConstructor(),mutation.getMethods()[0]);break;
-                case 8: fr = new realZone_Remainder(mutation.getConstructor(),mutation.getMethods()[0]);break;
-                case 9: fr = new realZone_Triangle(mutation.getConstructor(),mutation.getMethods()[0]);break;
-                case 10: fr = new realZone_Triangle2(mutation.getConstructor(),mutation.getMethods()[0]);break;
-                case 11: fr = new realZone_Variance(mutation.getConstructor(),mutation.getMethods()[0]);break;
-            }
+            FaultZone fr = switch (id) {
+                case 1 -> new realZone_Bessj(mutation.getConstructor(), mutation.getMethods()[0]);
+                case 2 -> new realZone_BubbleSort(mutation.getConstructor(), mutation.getMethods()[0]);
+                case 3 -> new realZone_Encoder(mutation.getConstructor(), mutation.getMethods()[0]);
+                case 4 -> new realZone_Expint(mutation.getConstructor(), mutation.getMethods()[0]);
+                case 5 -> new realZone_Fisher(mutation.getConstructor(), mutation.getMethods()[0]);
+                case 6 -> new realZone_Gammq(mutation.getConstructor(), mutation.getMethods()[0]);
+                case 7 -> new realZone_Median(mutation.getConstructor(), mutation.getMethods()[0]);
+                case 8 -> new realZone_Remainder(mutation.getConstructor(), mutation.getMethods()[0]);
+                case 9 -> new realZone_Triangle(mutation.getConstructor(), mutation.getMethods()[0]);
+                case 10 -> new realZone_Triangle2(mutation.getConstructor(), mutation.getMethods()[0]);
+                case 11 -> new realZone_Variance(mutation.getConstructor(), mutation.getMethods()[0]);
+                default -> null;
+            };
             AbstractART art_block = constructor.newInstance(inputBoundary, Parameters.lp);
 
             ThreadWithCallback callback = new ThreadWithCallback(inputBoundary,art_block,fr);
             ExecutorService executor = Executors.newFixedThreadPool(2);
 
-            Future future = executor.submit(callback::call);
+            Future future = executor.submit(callback);
             try{
                 Object result = future.get(1,TimeUnit.SECONDS);
                 temp = (int) result;
             }
-            catch (Exception ex){
+            catch (Exception ignored){
 
             }
             finally {
